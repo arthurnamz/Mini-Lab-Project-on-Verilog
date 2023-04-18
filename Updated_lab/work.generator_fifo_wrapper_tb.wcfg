@@ -11,12 +11,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="570.001 ns"></ZoomEndTime>
-      <Cursor1Time time="570.000 ns"></Cursor1Time>
+      <ZoomEndTime time="685.248 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="112"></ValueColumnWidth>
+      <ValueColumnWidth column_width="108"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="16" />
    <wvobject type="logic" fp_name="/generator_fifo_wrapper_tb/m00_axis_aclk">
@@ -38,6 +38,7 @@
    <wvobject fp_name="divider47" type="divider">
       <obj_property name="label">generator</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#F0E68C</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/generator_fifo_wrapper_tb/dut/gen/m00_axis_tdata">
       <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
@@ -50,6 +51,7 @@
    <wvobject fp_name="divider48" type="divider">
       <obj_property name="label">slave port for fifo</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#FFFF00</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/generator_fifo_wrapper_tb/dut/fifo/s00_axis_tdata">
       <obj_property name="ElementShortName">s00_axis_tdata[31:0]</obj_property>
@@ -66,6 +68,7 @@
    <wvobject fp_name="divider46" type="divider">
       <obj_property name="label">output for wrapper</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#00FF7F</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/generator_fifo_wrapper_tb/m00_axis_tdata">
       <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>

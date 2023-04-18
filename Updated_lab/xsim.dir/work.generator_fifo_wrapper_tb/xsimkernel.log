@@ -1,0 +1,4 @@
+Running: xsim.dir/work.generator_fifo_wrapper_tb/xsimk -simmode gui -wdb work.generator_fifo_wrapper_tb.wdb -simrunnum 0 -socket 49951
+Design successfully loaded
+Design Loading Memory Usage: 29084 KB (Peak: 29580 KB)
+Design Loading CPU Usage: 20 ms

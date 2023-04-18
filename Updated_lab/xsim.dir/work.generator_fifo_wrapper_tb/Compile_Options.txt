@@ -1,0 +1,1 @@
+"generator_fifo_wrapper_tb" -debug "all" -timescale "1ns/1ps" 

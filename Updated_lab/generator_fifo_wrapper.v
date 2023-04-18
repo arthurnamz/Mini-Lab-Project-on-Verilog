@@ -5,16 +5,16 @@ module generator_fifo_wrapper #
 )
 (
     // Input ports
-    input m00_axis_aclk,
-    input m00_axis_aresetn,
-    input m00_axis_enable,
-    input m00_axis_tready,
+    input wire m00_axis_aclk,
+    input wire m00_axis_aresetn,
+    input wire m00_axis_enable,
+    input wire m00_axis_tready,
 
     // Output ports
-    output  [DATA_SIZE-1:0]  m00_axis_tdata,
-    output  [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
-    output  m00_axis_tvalid,
-    output  m00_axis_tlast
+    output  wire [DATA_SIZE-1:0]  m00_axis_tdata,
+    output  wire [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
+    output  wire m00_axis_tvalid,
+    output  wire m00_axis_tlast
 );
 
 wire [DATA_SIZE-1:0]  connect_s00_axis_tdata;
