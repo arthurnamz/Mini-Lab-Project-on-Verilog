@@ -4,13 +4,16 @@ module generator
     parameter DATA_SIZE = 32
 )
 (
+    // Input ports
     input m00_axis_aclk,
     input m00_axis_aresetn,
     input m00_axis_enable,
+    input   m00_axis_tready,
+
+    // Output ports
     output reg [DATA_SIZE-1:0]  m00_axis_tdata,
     output reg [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
     output  reg m00_axis_tvalid,
-    input   m00_axis_tready,
     output  reg m00_axis_tlast
 );
 
@@ -28,7 +31,7 @@ always @(posedge m00_axis_aclk) begin
         m00_axis_tlast <= 'b1;
     end else begin
         m00_axis_tvalid <= 'b0;
-        m00_axis_tlast <= 'b1;
+        m00_axis_tlast <= 'b0;
     end
 end
 
