@@ -1,0 +1,15 @@
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2022.1/bin/unwrapped/lnx64.o/xelab generator_fifo_wrapper_tb -debug all -timescale 1ns/1ps 
+Multi-threading is on. Using 6 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.generator
+Compiling module work.axis_fifo
+Compiling module work.generator_fifo_wrapper
+Compiling module work.generator_fifo_wrapper_tb
+Built simulation snapshot work.generator_fifo_wrapper_tb

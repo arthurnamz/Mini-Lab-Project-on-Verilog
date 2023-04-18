@@ -1,5 +1,6 @@
 module generator_fifo_wrapper #
 (
+    parameter ADDR_WIDTH = 12,
     parameter DATA_SIZE = 32
 )
 (
@@ -10,14 +11,14 @@ module generator_fifo_wrapper #
     input m00_axis_tready,
 
     // Output ports
-    output reg [DATA_SIZE-1:0]  m00_axis_tdata,
-    output reg [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
-    output  reg m00_axis_tvalid,
-    output  reg m00_axis_tlast
+    output  [DATA_SIZE-1:0]  m00_axis_tdata,
+    output  [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
+    output  m00_axis_tvalid,
+    output  m00_axis_tlast
 );
 
 wire [DATA_SIZE-1:0]  connect_s00_axis_tdata;
-wire [(DATA_SIZE/8)-1 : 0] connect_s00_axis_tstrb
+wire [(DATA_SIZE/8)-1 : 0] connect_s00_axis_tstrb;
 wire connect_s00_axis_tvalid;
 wire connect_s00_axis_tlast;
 wire connect_m00_axis_tready;
@@ -38,7 +39,7 @@ generator #(
 
 axis_fifo #(
     .ADDR_WIDTH(ADDR_WIDTH),
-    .C_AXIS_TDATA_WIDTH(C_AXIS_TDATA_WIDTH)
+    .C_AXIS_TDATA_WIDTH(DATA_SIZE)
 ) fifo (
     .s00_axis_aclk(m00_axis_aclk),
     .s00_axis_aresetn(m00_axis_aresetn),
