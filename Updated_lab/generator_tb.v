@@ -1,6 +1,6 @@
 module generator_tb;
     parameter DATA_SIZE = 32;
-    reg m00_axis_aclk;
+    reg m00_axis_aclk = 0;
     reg m00_axis_aresetn;
     reg m00_axis_enable;
     wire  [DATA_SIZE-1:0]  m00_axis_tdata;
