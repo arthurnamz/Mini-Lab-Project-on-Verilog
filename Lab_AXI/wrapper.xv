@@ -1,0 +1,65 @@
+module wrapper #
+(
+    parameter ADDR_WIDTH = 12,
+    parameter DATA_SIZE = 8,
+    parameter C_AXIS_TDATA_WIDTH = 32
+)
+(
+    input clk, // system clock
+    input rst, // system reset
+    
+    // generator interface
+    input generator_enable, // enable signal for power_of_3 generator
+    output reg [DATA_SIZE-1:0] power_of_3, // output from power_of_3 generator
+    
+    // AXI-FIFO interface
+    input [C_AXIS_TDATA_WIDTH-1:0] fifo_data_in, // input data for FIFO
+    input [C_AXIS_TDATA_WIDTH/8-1:0] fifo_byte_enable_in, // input byte enable for FIFO
+    input fifo_tvalid_in, // input valid signal for FIFO
+    output reg fifo_tready_out, // output ready signal for FIFO
+    output reg [C_AXIS_TDATA_WIDTH-1:0] fifo_data_out, // output data from FIFO
+    output reg [C_AXIS_TDATA_WIDTH/8-1:0] fifo_byte_enable_out, // output byte enable for FIFO
+    output reg fifo_tvalid_out, // output valid signal for FIFO
+    
+    // memory_wrapper interface
+    input mem_wr_en, // enable signal for memory_wrapper write
+    input [ADDR_WIDTH-1:0] mem_wr_addr, // address for memory_wrapper write
+    input [DATA_SIZE-1:0] mem_wr_data, // data for memory_wrapper write
+    output reg mem_wr_ack, // acknowledge signal for memory_wrapper write
+    input mem_rd_en, // enable signal for memory_wrapper read
+    input [ADDR_WIDTH-1:0] mem_rd_addr, // address for memory_wrapper read
+    output reg [DATA_SIZE-1:0] mem_rd_data, // data from memory_wrapper read
+    output reg mem_rd_ack // acknowledge signal for memory_wrapper read
+);
+
+// instantiate power_of_3 generator
+generator #(.data_size(DATA_SIZE)) gen(clk, rst, generator_enable, power_of_3);
+
+// instantiate AXI-FIFO
+axis_fifo #(
+    .ADDR_WIDTH(ADDR_WIDTH),
+    .C_AXIS_TDATA_WIDTH(C_AXIS_TDATA_WIDTH)
+) fifo (
+    .s00_axis_aclk(clk),
+    .s00_axis_aresetn(~rst),
+    .s00_axis_tdata(fifo_data_in),
+    .s00_axis_tstrb(fifo_byte_enable_in),
+    .s00_axis_tvalid(fifo_tvalid_in),
+    .s00_axis_tready(fifo_tready_out),
+    .s00_axis_tlast(1'b1),
+    .m00_axis_aclk(clk),
+    .m00_axis_aresetn(~rst),
+    .m00_axis_tdata(fifo_data_out),
+    .m00_axis_tstrb(fifo_byte_enable_out),
+    .m00_axis_tvalid(m00_axis_tvalid_reg),
+    .m00_axis_tready(fifo_tvalid_out),
+    .m00_axis_tlast(1'b1)
+);
+
+// instantiate memory_wrapper
+memory_wrapper #(.ADDR_WIDTH(ADDR_WIDTH), .DATA_SIZE(DATA_SIZE)) mem(clk, rst,
+    .wr_en(mem_wr_en), .wr_addr(mem_wr_addr), .wr_data(mem_wr_data), .wr_ack(mem_wr_ack),
+    .rd_en(mem_rd_en), .rd_addr(mem_rd_addr), .rd_data(mem_rd_data), .rd_ack(mem_rd_ack)
+);
+
+endmodule

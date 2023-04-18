@@ -1,0 +1,117 @@
+`timescale 1ns / 1ps
+
+module wrapper_tb;
+
+    // Parameters
+    parameter ADDR_WIDTH = 12;
+    parameter DATA_SIZE = 8;
+    parameter C_AXIS_TDATA_WIDTH = 32;
+
+    // Inputs
+    reg clk;
+    reg rst;
+    reg generator_enable;
+    reg fifo_tvalid_in;
+    reg [C_AXIS_TDATA_WIDTH-1:0] fifo_data_in;
+    reg [C_AXIS_TDATA_WIDTH/8-1:0] fifo_byte_enable_in;
+    reg mem_wr_en;
+    reg [ADDR_WIDTH-1:0] mem_wr_addr;
+    reg [DATA_SIZE-1:0] mem_wr_data;
+    reg mem_rd_en;
+    reg [ADDR_WIDTH-1:0] mem_rd_addr;
+
+    // Outputs
+    wire [DATA_SIZE-1:0] power_of_3;
+    wire [C_AXIS_TDATA_WIDTH-1:0] fifo_data_out;
+    wire [C_AXIS_TDATA_WIDTH/8-1:0] fifo_byte_enable_out;
+    wire fifo_tready_out;
+    wire mem_wr_ack;
+    wire [DATA_SIZE-1:0] mem_rd_data;
+    wire mem_rd_ack;
+    reg fifo_tvalid_out;
+
+    // Instantiate the UUT
+    wrapper #(
+        .ADDR_WIDTH(ADDR_WIDTH),
+        .DATA_SIZE(DATA_SIZE),
+        .C_AXIS_TDATA_WIDTH(C_AXIS_TDATA_WIDTH)
+    ) dut (
+        .clk(clk),
+        .rst(rst),
+        .generator_enable(generator_enable),
+        .power_of_3(power_of_3),
+        .fifo_tvalid_in(fifo_tvalid_in),
+        .fifo_data_in(fifo_data_in),
+        .fifo_byte_enable_in(fifo_byte_enable_in),
+        .fifo_tready_out(fifo_tready_out),
+        .fifo_data_out(fifo_data_out),
+        .fifo_byte_enable_out(fifo_byte_enable_out),
+        .fifo_tvalid_out(fifo_tvalid_out),
+        .mem_wr_en(mem_wr_en),
+        .mem_wr_addr(mem_wr_addr),
+        .mem_wr_data(mem_wr_data),
+        .mem_wr_ack(mem_wr_ack),
+        .mem_rd_en(mem_rd_en),
+        .mem_rd_addr(mem_rd_addr),
+        .mem_rd_data(mem_rd_data),
+        .mem_rd_ack(mem_rd_ack)
+    );
+
+    // Clock generation
+    always #5 clk = ~clk;
+
+    // Reset generation
+    initial begin
+        rst = 1;
+        #10;
+        rst = 0;
+    end
+
+    // Write to memory_wrapper
+    initial begin
+        #15;
+        mem_wr_en = 1;
+        mem_wr_addr = 4'h0;
+        mem_wr_data = 8'hAB;
+        #10;
+        mem_wr_en = 0;
+    end
+
+    // Read from memory_wrapper
+    initial begin
+        #20;
+        mem_rd_en = 1;
+        mem_rd_addr = 4'h0;
+        #10;
+        if (mem_rd_ack) begin
+            $display("Read data: %h", mem_rd_data);
+        end
+        mem_rd_en = 0;
+    end
+
+    // Generate power of 3 and send to FIFO
+    initial begin
+        generator_enable = 1;
+        #5;
+        generator_enable = 0;
+        #20;
+        fifo_tvalid_in = 1;
+        fifo_data_in = {power_of_3, 24'h0};
+        fifo_byte_enable_in = {8'hFF, 2'h0};
+        #10;
+        fifo_tvalid_in = 0;
+            // Read data from memory_wrapper
+    mem_rd_en = 1;
+    mem_rd_addr = 8'h01;
+    #10;
+    
+    // Check the read data and memory_wrapper acknowledgement
+    if (mem_rd_data !== 8'h7B) $error("Error: Read data from memory_wrapper is not expected value.");
+    if (!mem_rd_ack) $error("Error: Memory_wrapper read acknowledgement is not received.");
+    
+    #10;
+    $display("Testbench complete.");
+    $finish;
+end
+endmodule
+

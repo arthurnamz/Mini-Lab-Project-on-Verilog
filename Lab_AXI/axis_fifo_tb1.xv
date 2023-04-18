@@ -1,0 +1,99 @@
+`timescale 1ns / 1ps
+
+module testbench;
+
+    // Parameters
+    localparam ADDR_WIDTH = 12;
+    localparam C_AXIS_TDATA_WIDTH = 32;
+    
+    // Signals
+    reg s00_axis_aclk = 0;
+    reg s00_axis_aresetn = 0;
+    reg [C_AXIS_TDATA_WIDTH-1:0] s00_axis_tdata = 0;
+    reg [(C_AXIS_TDATA_WIDTH/8)-1:0] s00_axis_tstrb = 0;
+    reg s00_axis_tvalid = 0;
+    wire s00_axis_tready;
+    wire s00_axis_tlast;
+    reg m00_axis_aclk = 0;
+    reg m00_axis_aresetn = 0;
+    wire [C_AXIS_TDATA_WIDTH-1:0] m00_axis_tdata;
+    wire [(C_AXIS_TDATA_WIDTH/8)-1:0] m00_axis_tstrb;
+    wire m00_axis_tvalid;
+    reg m00_axis_tready = 0;
+    wire m00_axis_tlast;
+    
+    // Instantiate the DUT
+    axis_fifo #(
+        .ADDR_WIDTH(ADDR_WIDTH),
+        .C_AXIS_TDATA_WIDTH(C_AXIS_TDATA_WIDTH)
+    ) dut (
+        .s00_axis_aclk(s00_axis_aclk),
+        .s00_axis_aresetn(s00_axis_aresetn),
+        .s00_axis_tdata(s00_axis_tdata),
+        .s00_axis_tstrb(s00_axis_tstrb),
+        .s00_axis_tvalid(s00_axis_tvalid),
+        .s00_axis_tready(s00_axis_tready),
+        .s00_axis_tlast(s00_axis_tlast),
+        .m00_axis_aclk(m00_axis_aclk),
+        .m00_axis_aresetn(m00_axis_aresetn),
+        .m00_axis_tdata(m00_axis_tdata),
+        .m00_axis_tstrb(m00_axis_tstrb),
+        .m00_axis_tvalid(m00_axis_tvalid),
+        .m00_axis_tready(m00_axis_tready),
+        .m00_axis_tlast(m00_axis_tlast)
+    );
+    
+    // Clock generation
+    always #5 s00_axis_aclk = ~s00_axis_aclk;
+    always #7 m00_axis_aclk = ~m00_axis_aclk;
+    
+    // Reset generation
+    initial begin
+        s00_axis_aresetn = 0;
+        m00_axis_aresetn = 0;
+        #10 s00_axis_aresetn = 1;
+        m00_axis_aresetn = 1;
+    end
+    
+    // Write operation
+    initial begin
+        s00_axis_tvalid = 0;
+        s00_axis_tdata = 0;
+        s00_axis_tlast = 0;
+        
+        // Wait for reset to complete
+        repeat (10) @(posedge s00_axis_aclk);
+        
+        // Start writing data
+        s00_axis_tvalid = 1;
+        s00_axis_tdata = 32'h11223344;
+        s00_axis_tlast = 0;
+        @(posedge s00_axis_aclk) while (!s00_axis_tready) ;
+        
+        // Write last data
+        s00_axis_tvalid = 1;
+        s00_axis_tdata= 32'hDCBA1234; 
+        
+        // Send last data
+	s00_axis_tlast = 1; // Indicate end of frame
+	@(posedge s00_axis_aclk);
+	s00_axis_tvalid = 0; // De-assert valid signal
+	s00_axis_tlast = 0; // De-assert last signal
+	@(posedge s00_axis_aclk);
+	
+	    // Wait for the FIFO to empty
+	    repeat (10) @(posedge s00_axis_aclk);
+	    if (!s00_axis_tready) begin
+		$display("Error: s00_axis_tready not asserted after last data");
+		$finish;
+	    end
+	    
+	    // Stop the clock and end the simulation
+	    @(posedge s00_axis_aclk);
+	    $display("Simulation complete");
+	    $finish;
+	end
+
+endmodule
+
+
