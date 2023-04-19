@@ -2,7 +2,7 @@ module memory
 #
 (
     // Parameter declarations
-parameter MEM_SIZE = 4096, 
+//parameter MEM_SIZE = 4096, 
 parameter ADDR_WIDTH = 12, 
 parameter DATA_WIDTH = 32  
 )
@@ -34,7 +34,7 @@ parameter DATA_WIDTH = 32
 
 
 // Internal signal declarations
-reg [DATA_WIDTH-1:0] mem[0:MEM_SIZE-1];
+reg [DATA_WIDTH-1:0] mem[0:4095];
 
 // Write operation
 always @(posedge s02_axis_aclk) begin

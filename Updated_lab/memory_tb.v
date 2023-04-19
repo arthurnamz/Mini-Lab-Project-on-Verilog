@@ -1,13 +1,13 @@
 `timescale 1ns/1ps
 
 module memory_tb;
-    parameter MEM_SIZE = 4096; 
+    parameter PERIOD = 2; 
     parameter ADDR_WIDTH = 12; 
     parameter DATA_WIDTH = 32; 
 
  // input ports
-    reg s02_axis_aclk;
-    reg m02_axis_aclk;
+    reg s02_axis_aclk = 0;
+    reg m02_axis_aclk = 0;
     reg s02_axis_aresetn;
     reg m02_axis_aresetn;
     reg s02_axis_wr_en;
@@ -26,6 +26,42 @@ module memory_tb;
     wire m02_axis_tvalid;
     wire m02_axis_tlast;
     wire s02_axis_tready;
+
+    // Clock generation 
+    always #(PERIOD/2) s02_axis_aclk = ~s02_axis_aclk;
+    always #(PERIOD/2) m02_axis_aclk = ~m02_axis_aclk;
+
+    initial begin
+        s02_axis_aresetn = 0;
+        m02_axis_aresetn = 0;
+        #2;
+        s02_axis_aresetn = 1;
+        m02_axis_aresetn = 1;
+
+        #4;
+        s02_axis_wr_en = 0;
+        m02_axis_rd_en = 0;
+        s02_axis_wr_addr = `12b00;
+        #10;
+        // write data in the memory
+        s02_axis_wr_en = 1;
+        m02_axis_rd_en = 0;
+        s02_axis_wr_addr = `12b01;
+        s02_axis_wr_tdata = `32b0022;
+        s02_axis_tstrb = 1;
+        s02_axis_tvalid = 1;
+        m02_axis_tlast = 1;
+
+        #40;
+         // Read data from the memory
+        m02_axis_rd_en = 1;
+        m02_axis_tready = 1;
+        m02_axis_rd_addr = `12b01;
+
+        #100;
+
+        $finish;
+    end
 
 
 endmodule
