@@ -27,6 +27,27 @@ module memory_tb;
     wire m02_axis_tlast;
     wire s02_axis_tready;
 
+    memory #(.ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
+        .s02_axis_aclk(s02_axis_aclk),
+        .m02_axis_aclk(m02_axis_aclk),
+        .s02_axis_aresetn(s02_axis_aresetn),
+        .m02_axis_aresetn(m02_axis_aresetn),
+        .s02_axis_wr_en(s02_axis_wr_en),
+        .m02_axis_rd_en(m02_axis_rd_en),
+        .s02_axis_wr_addr(s02_axis_wr_addr),
+        .m02_axis_rd_addr(m02_axis_rd_addr),
+        .s02_axis_wr_tdata(s02_axis_wr_tdata),
+        .s02_axis_tstrb(s02_axis_tstrb),
+        .s02_axis_tvalid(s02_axis_tvalid),
+        .s02_axis_tlast(s02_axis_tlast),
+        .m02_axis_tready(m02_axis_tready),
+        .m02_axis_rd_tdata(m02_axis_rd_tdata),
+        .m02_axis_tstrb(m02_axis_tstrb),
+        .m02_axis_tvalid(m02_axis_tvalid),
+        .m02_axis_tlast(m02_axis_tlast),
+        .s02_axis_tready(s02_axis_tready)
+    );
+
     // Clock generation 
     always #(PERIOD/2) s02_axis_aclk = ~s02_axis_aclk;
     always #(PERIOD/2) m02_axis_aclk = ~m02_axis_aclk;
