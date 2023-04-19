@@ -2,50 +2,44 @@
 
 module memory_tb;
     parameter PERIOD = 2; 
-    parameter ADDR_WIDTH = 12; 
+    parameter MEM_SIZE = 4096; 
+    parameter ADDR_WIDTH = 12;
     parameter DATA_WIDTH = 32; 
 
- // input ports
+    // slave input ports
     reg s02_axis_aclk = 0;
-    reg m02_axis_aclk = 0;
     reg s02_axis_aresetn;
-    reg m02_axis_aresetn;
-    reg s02_axis_wr_en;
-    reg m02_axis_rd_en;
-    reg [ADDR_WIDTH-1:0] s02_axis_wr_addr;
-    reg [ADDR_WIDTH-1:0] m02_axis_rd_addr;
     reg [DATA_WIDTH-1:0] s02_axis_wr_tdata;
     reg [(DATA_WIDTH/8)-1 : 0] s02_axis_tstrb;
     reg s02_axis_tvalid;
     reg s02_axis_tlast;
-    reg m02_axis_tready;
+    wire s02_axis_tready;
 
-    // ouput port
+    // master output port
+    reg m02_axis_aclk = 0;
+    reg m02_axis_aresetn;
+    reg m02_axis_tready;
     wire [DATA_WIDTH-1:0] m02_axis_rd_tdata;
     wire [(DATA_WIDTH/8)-1 : 0] m02_axis_tstrb;
     wire m02_axis_tvalid;
     wire m02_axis_tlast;
-    wire s02_axis_tready;
 
-    memory #(.ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
+    memory #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
         .s02_axis_aclk(s02_axis_aclk),
-        .m02_axis_aclk(m02_axis_aclk),
         .s02_axis_aresetn(s02_axis_aresetn),
-        .m02_axis_aresetn(m02_axis_aresetn),
-        .s02_axis_wr_en(s02_axis_wr_en),
-        .m02_axis_rd_en(m02_axis_rd_en),
-        .s02_axis_wr_addr(s02_axis_wr_addr),
-        .m02_axis_rd_addr(m02_axis_rd_addr),
         .s02_axis_wr_tdata(s02_axis_wr_tdata),
         .s02_axis_tstrb(s02_axis_tstrb),
         .s02_axis_tvalid(s02_axis_tvalid),
         .s02_axis_tlast(s02_axis_tlast),
+        .s02_axis_tready(s02_axis_tready),
+
+        .m02_axis_aclk(m02_axis_aclk),
+        .m02_axis_aresetn(m02_axis_aresetn),
         .m02_axis_tready(m02_axis_tready),
         .m02_axis_rd_tdata(m02_axis_rd_tdata),
         .m02_axis_tstrb(m02_axis_tstrb),
         .m02_axis_tvalid(m02_axis_tvalid),
-        .m02_axis_tlast(m02_axis_tlast),
-        .s02_axis_tready(s02_axis_tready)
+        .m02_axis_tlast(m02_axis_tlast)        
     );
 
     // Clock generation 
@@ -53,31 +47,51 @@ module memory_tb;
     always #(PERIOD/2) m02_axis_aclk = ~m02_axis_aclk;
 
     initial begin
-        s02_axis_aresetn = 'b0;
-        m02_axis_aresetn = 'b0;
+        s02_axis_aresetn = 1'b0;
+        m02_axis_aresetn = 1'b0;
         #2;
-        s02_axis_aresetn = 'b1;
-        m02_axis_aresetn = 'b1;
+        s02_axis_aresetn = 1'b1;
+        m02_axis_aresetn = 1'b1;
+        m02_axis_tready = 1'b0;
 
-        #4;
-        s02_axis_wr_en = 'b0;
-        m02_axis_rd_en = 'b0;
-        s02_axis_wr_addr = 12'b00;
+        // test 1
         #10;
         // write data in the memory
-        s02_axis_wr_en = 'b1;
-        m02_axis_rd_en = 'b0;
-        s02_axis_wr_addr = 12'b01;
         s02_axis_wr_tdata = 32'h0055;
-        s02_axis_tstrb = 'b1;
-        s02_axis_tvalid = 'b1;
-        s02_axis_tlast = 'b1;
+        s02_axis_tstrb = 1'b1;
+        s02_axis_tvalid = 1'b1;
+        s02_axis_tlast = 1'b1;
 
-        #40;
+        // test 2
+        #10;
+        // write data in the memory
+        s02_axis_wr_tdata = 32'h0022;
+        s02_axis_tstrb = 1'b1;
+        s02_axis_tvalid = 1'b1;
+        s02_axis_tlast = 1'b1;
+
+        // test 3
+        #10;
+        // write data in the memory
+        s02_axis_wr_tdata = 32'h0024;
+        s02_axis_tstrb = 1'b1;
+        s02_axis_tvalid = 1'b1;
+        s02_axis_tlast = 1'b1;
+
+        // // test 1 data out
+        #20;
          // Read data from the memory
-        m02_axis_rd_en = 'b1;
-        m02_axis_tready = 'b1;
-        m02_axis_rd_addr = 12'b01;
+        m02_axis_tready = 1'b1;
+
+        // // test 2 data out
+        #20;
+         // Read data from the memory
+        m02_axis_tready = 1'b1;
+
+        // // test 3 data out
+        #20;
+         // Read data from the memory
+        m02_axis_tready = 1'b1;
 
         #100;
 

@@ -1,0 +1,16 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/axis_fifo.v" into library work
+INFO: [VRFC 10-311] analyzing module axis_fifo
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/axis_fifo_tb.v" into library work
+INFO: [VRFC 10-311] analyzing module axis_fifo_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/generator.v" into library work
+INFO: [VRFC 10-311] analyzing module generator
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/generator_fifo_wrapper.v" into library work
+INFO: [VRFC 10-311] analyzing module generator_fifo_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/generator_fifo_wrapper_tb.v" into library work
+INFO: [VRFC 10-311] analyzing module generator_fifo_wrapper_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/generator_tb.v" into library work
+INFO: [VRFC 10-311] analyzing module generator_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/memory.v" into library work
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/Mini-Lab-Project-on-Verilog/Updated_lab/memory_tb.v" into library work
+INFO: [VRFC 10-311] analyzing module memory_tb
