@@ -68,10 +68,10 @@ module memory_tb;
         s02_axis_wr_en = 'b1;
         m02_axis_rd_en = 'b0;
         s02_axis_wr_addr = 12'b01;
-        s02_axis_wr_tdata = 32'b0022;
+        s02_axis_wr_tdata = 32'h0055;
         s02_axis_tstrb = 'b1;
         s02_axis_tvalid = 'b1;
-        m02_axis_tlast = 'b1;
+        s02_axis_tlast = 'b1;
 
         #40;
          // Read data from the memory
