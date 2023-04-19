@@ -53,31 +53,31 @@ module memory_tb;
     always #(PERIOD/2) m02_axis_aclk = ~m02_axis_aclk;
 
     initial begin
-        s02_axis_aresetn = 0;
-        m02_axis_aresetn = 0;
+        s02_axis_aresetn = 'b0;
+        m02_axis_aresetn = 'b0;
         #2;
-        s02_axis_aresetn = 1;
-        m02_axis_aresetn = 1;
+        s02_axis_aresetn = 'b1;
+        m02_axis_aresetn = 'b1;
 
         #4;
-        s02_axis_wr_en = 0;
-        m02_axis_rd_en = 0;
-        s02_axis_wr_addr = `12b00;
+        s02_axis_wr_en = 'b0;
+        m02_axis_rd_en = 'b0;
+        s02_axis_wr_addr = 12'b00;
         #10;
         // write data in the memory
-        s02_axis_wr_en = 1;
-        m02_axis_rd_en = 0;
-        s02_axis_wr_addr = `12b01;
-        s02_axis_wr_tdata = `32b0022;
-        s02_axis_tstrb = 1;
-        s02_axis_tvalid = 1;
-        m02_axis_tlast = 1;
+        s02_axis_wr_en = 'b1;
+        m02_axis_rd_en = 'b0;
+        s02_axis_wr_addr = 12'b01;
+        s02_axis_wr_tdata = 32'b0022;
+        s02_axis_tstrb = 'b1;
+        s02_axis_tvalid = 'b1;
+        m02_axis_tlast = 'b1;
 
         #40;
          // Read data from the memory
-        m02_axis_rd_en = 1;
-        m02_axis_tready = 1;
-        m02_axis_rd_addr = `12b01;
+        m02_axis_rd_en = 'b1;
+        m02_axis_tready = 'b1;
+        m02_axis_rd_addr = 12'b01;
 
         #100;
 
