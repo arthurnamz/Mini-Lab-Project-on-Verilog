@@ -23,7 +23,7 @@ module memory_controller (
   output reg m01_axis_tlast
 );
 
-  // Internal registers and wires
+  // Internal registers 
   reg [ADDR_WIDTH-1:0] wr_address_counter;
   reg [ADDR_WIDTH-1:0] rd_address_counter;
   reg [DATA_WIDTH-1:0] mem[MEM_SIZE-1:0];
