@@ -1,9 +1,12 @@
-module memory_controller (
+module memory_controller #(
   // Parameter declarations
   parameter MEM_SIZE = 4096,
   parameter ADDR_WIDTH = 12,
-  parameter DATA_WIDTH = 32,
+  parameter DATA_WIDTH = 32
 
+)
+
+(
   // Slave input ports
   input s01_axis_aclk,
   input s01_axis_aresetn,

@@ -24,7 +24,7 @@ module memory_controller_tb;
     wire m01_axis_tvalid;
     wire m01_axis_tlast;
 
-    memory #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
+    memory_controller #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
         .s01_axis_aclk(s01_axis_aclk),
         .s01_axis_aresetn(s01_axis_aresetn),
         .s01_axis_wr_tdata(s01_axis_wr_tdata),
