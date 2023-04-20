@@ -10,7 +10,7 @@ module memory_controller #(
   // Slave input ports
   input s01_axis_aclk,
   input s01_axis_aresetn,
-  input [DATA_WIDTH-1:0] s01_axis_wr_tdata,
+  input [DATA_WIDTH-1:0] s01_axis_tdata,
   input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
   input s01_axis_tvalid,
   input s01_axis_tlast,
@@ -20,7 +20,7 @@ module memory_controller #(
   input m01_axis_aclk,
   input m01_axis_aresetn,
   input m01_axis_tready,
-  output reg [DATA_WIDTH-1:0] m01_axis_rd_tdata,
+  output reg [DATA_WIDTH-1:0] m01_axis_tdata,
   output reg [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
   output reg m01_axis_tvalid,
   output reg m01_axis_tlast
@@ -39,11 +39,13 @@ module memory_controller #(
 
   // State machine logic
  always @(posedge s01_axis_aclk or posedge m01_axis_aclk) begin
-        if (~s01_axis_aresetn || ~m01_axis_aresetn) begin
+        if (~s01_axis_aresetn) begin
             wr_address_counter <= 12'b0;
-            rd_address_counter <= 12'b0;
             s01_axis_tready <= 1'b0;
             state <= IDLE;
+        end else if(~m01_axis_aresetn) begin
+          rd_address_counter <= 12'b0;
+          state <= IDLE;
         end else begin
             case (state)
                 IDLE: begin
@@ -54,13 +56,13 @@ module memory_controller #(
                     end
                 end
                 WRITE: begin
-                    mem[wr_address_counter] <= s01_axis_wr_tdata;
+                    mem[wr_address_counter] <= s01_axis_tdata;
                     wr_address_counter <= wr_address_counter + 1;
                     s01_axis_tready <= 1'b1;
                     state <= IDLE;
                 end
                 READ: begin
-                    m01_axis_rd_tdata <= mem[rd_address_counter];
+                    m01_axis_tdata <= mem[rd_address_counter];
                     m01_axis_tstrb <= 1'b1;
                     m01_axis_tvalid <= 1'b1;
                     m01_axis_tlast <= 1'b1;

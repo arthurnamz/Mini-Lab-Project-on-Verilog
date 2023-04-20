@@ -1,0 +1,5 @@
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2022.1/bin/unwrapped/lnx64.o/xelab memory_controller_tb -debug all -timescale 1ns/1ps 
+Multi-threading is on. Using 6 slave threads.
+ERROR: [XSIM 43-3225] Cannot find design unit work.memory_controller_tb in library work located at xsim.dir/work.

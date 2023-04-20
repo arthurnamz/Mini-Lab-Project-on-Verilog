@@ -9,7 +9,7 @@ module memory_controller_tb;
     // slave input ports
     reg s01_axis_aclk = 0;
     reg s01_axis_aresetn;
-    reg [DATA_WIDTH-1:0] s01_axis_wr_tdata;
+    reg [DATA_WIDTH-1:0] s01_axis_tdata;
     reg [(DATA_WIDTH/8)-1 : 0] s01_axis_tstrb;
     reg s01_axis_tvalid;
     reg s01_axis_tlast;
@@ -19,7 +19,7 @@ module memory_controller_tb;
     reg m01_axis_aclk = 0;
     reg m01_axis_aresetn;
     reg m01_axis_tready;
-    wire [DATA_WIDTH-1:0] m01_axis_rd_tdata;
+    wire [DATA_WIDTH-1:0] m01_axis_tdata;
     wire [(DATA_WIDTH/8)-1 : 0] m01_axis_tstrb;
     wire m01_axis_tvalid;
     wire m01_axis_tlast;
@@ -27,7 +27,7 @@ module memory_controller_tb;
     memory_controller #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
         .s01_axis_aclk(s01_axis_aclk),
         .s01_axis_aresetn(s01_axis_aresetn),
-        .s01_axis_wr_tdata(s01_axis_wr_tdata),
+        .s01_axis_tdata(s01_axis_tdata),
         .s01_axis_tstrb(s01_axis_tstrb),
         .s01_axis_tvalid(s01_axis_tvalid),
         .s01_axis_tlast(s01_axis_tlast),
@@ -36,7 +36,7 @@ module memory_controller_tb;
         .m01_axis_aclk(m01_axis_aclk),
         .m01_axis_aresetn(m01_axis_aresetn),
         .m01_axis_tready(m01_axis_tready),
-        .m01_axis_rd_tdata(m01_axis_rd_tdata),
+        .m01_axis_tdata(m01_axis_tdata),
         .m01_axis_tstrb(m01_axis_tstrb),
         .m01_axis_tvalid(m01_axis_tvalid),
         .m01_axis_tlast(m01_axis_tlast)        
@@ -52,31 +52,34 @@ module memory_controller_tb;
         #2;
         s01_axis_aresetn = 1'b1;
         m01_axis_aresetn = 1'b1;
-        m01_axis_tready = 1'b0;
+       
 
         // test 1
         #10;
         // write data in the memory
-        s01_axis_wr_tdata = 32'h0055;
+        s01_axis_tdata = 32'h0055;
         s01_axis_tstrb = 1'b1;
         s01_axis_tvalid = 1'b1;
         s01_axis_tlast = 1'b1;
+        m01_axis_tready = 1'b0;
 
         // test 2
         #10;
         // write data in the memory
-        s01_axis_wr_tdata = 32'h0022;
+        s01_axis_tdata = 32'h0022;
         s01_axis_tstrb = 1'b1;
         s01_axis_tvalid = 1'b1;
         s01_axis_tlast = 1'b1;
+        m01_axis_tready = 1'b1;
 
         // test 3
         #10;
         // write data in the memory
-        s01_axis_wr_tdata = 32'h0024;
+        s01_axis_tdata = 32'h0024;
         s01_axis_tstrb = 1'b1;
         s01_axis_tvalid = 1'b1;
         s01_axis_tlast = 1'b1;
+         m01_axis_tready = 1'b0;
 
         // // test 1 data out
         #20;
