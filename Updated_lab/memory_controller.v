@@ -63,10 +63,10 @@ module memory_controller #(
                 end
                 READ: begin
                     m01_axis_tdata <= mem[rd_address_counter];
+                    rd_address_counter <= rd_address_counter + 1;
                     m01_axis_tstrb <= 1'b1;
                     m01_axis_tvalid <= 1'b1;
                     m01_axis_tlast <= 1'b1;
-                    rd_address_counter <= rd_address_counter + 1;
                     state <= IDLE;
                 end
                 default: begin

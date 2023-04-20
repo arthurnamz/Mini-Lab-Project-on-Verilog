@@ -103,7 +103,7 @@ module memory_controller_tb;
         m01_axis_tready = 1'b1;
 
         #40;
-         s01_axis_tstrb = 1'b0;
+        s01_axis_tstrb = 1'b0;
         s01_axis_tvalid = 1'b0;
         s01_axis_tlast = 1'b0;
         m01_axis_tready = 1'b0;
