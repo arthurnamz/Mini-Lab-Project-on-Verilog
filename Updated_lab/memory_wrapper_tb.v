@@ -81,34 +81,21 @@ module memory_wrapper_tb;
         // // test 1 data out
         #20;
          // Read data from the memory
-        s01_axis_tstrb = 1'b0;
-        s01_axis_tvalid = 1'b0;
-        s01_axis_tlast = 1'b0;
         m01_axis_tready = 1'b1;
 
         // // test 2 data out
         #20;
          // Read data from the memory
-        s01_axis_tstrb = 1'b0;
-        s01_axis_tvalid = 1'b0;
-        s01_axis_tlast = 1'b0;
         m01_axis_tready = 1'b1;
 
         // // test 3 data out
         #20;
          // Read data from the memory
-        s01_axis_tstrb = 1'b0;
-        s01_axis_tvalid = 1'b0;
-        s01_axis_tlast = 1'b0;
         m01_axis_tready = 1'b1;
 
-        #40;
-        s01_axis_tstrb = 1'b0;
-        s01_axis_tvalid = 1'b0;
-        s01_axis_tlast = 1'b0;
-        m01_axis_tready = 1'b0;
+        
 
-        #100;
+        #300;
 
         $finish;
     end
