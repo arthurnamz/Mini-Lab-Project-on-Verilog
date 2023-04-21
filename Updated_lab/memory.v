@@ -36,14 +36,14 @@ reg [ADDR_WIDTH-1:0] rd_addr_counter;
 // Write operation
 always @(posedge s02_axis_aclk) begin
     if(~s02_axis_aresetn) begin
-        wr_addr_counter <= 12'b0;
+        wr_addr_counter <= 0;
         s02_axis_tready <= 1'b0;
     end else if (s02_axis_tvalid && s02_axis_tlast && s02_axis_tstrb) begin
 		mem[wr_addr_counter] <= s02_axis_wr_tdata;
         wr_addr_counter <= wr_addr_counter + 1;
-        s02_axis_tready <= 1'b1;
+        s02_axis_tready <= 1;
     end else begin
-        s02_axis_tready <= 1'b0;
+        s02_axis_tready <= 0;
     end
 end
 
@@ -51,16 +51,16 @@ end
 // Read operation
 always @(posedge m02_axis_aclk) begin
         if(~m02_axis_aresetn) begin
-            rd_addr_counter =12'b0;
-            m02_axis_rd_tdata <= 1'bz;
+            rd_addr_counter = 0;
+            m02_axis_rd_tdata <= 'bz;
         end else if ( m02_axis_tready ) begin
             m02_axis_rd_tdata <= mem[rd_addr_counter];
-            m02_axis_tvalid <= 1'b1;
-            m02_axis_tstrb <= 1'b1; 
-            m02_axis_tlast <= 1'b1;
+            m02_axis_tvalid <= 1;
+            m02_axis_tstrb <= 1; 
+            m02_axis_tlast <= 1;
             rd_addr_counter <= rd_addr_counter + 1;
         end else begin
-            m02_axis_rd_tdata <= 1'bz;
+            m02_axis_rd_tdata <= 'bz;
         end
 end
 
