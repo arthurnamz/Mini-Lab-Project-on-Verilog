@@ -11,14 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="232.001 ns"></ZoomEndTime>
-      <Cursor1Time time="192.000 ns"></Cursor1Time>
+      <ZoomEndTime time="809.839 ns"></ZoomEndTime>
+      <Cursor1Time time="5.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+      <ValueColumnWidth column_width="76"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="divider16" type="divider">
       <obj_property name="label">slave ports</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -86,5 +86,25 @@
    <wvobject type="logic" fp_name="/memory_controller_tb/m01_axis_tlast">
       <obj_property name="ElementShortName">m01_axis_tlast</obj_property>
       <obj_property name="ObjectShortName">m01_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/memory_controller_tb/dut/tmp">
+      <obj_property name="ElementShortName">tmp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tmp[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/memory_controller_tb/dut/flag1">
+      <obj_property name="ElementShortName">flag1</obj_property>
+      <obj_property name="ObjectShortName">flag1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/memory_controller_tb/dut/flag2">
+      <obj_property name="ElementShortName">flag2</obj_property>
+      <obj_property name="ObjectShortName">flag2</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/memory_controller_tb/dut/slave_state">
+      <obj_property name="ElementShortName">slave_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slave_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/memory_controller_tb/dut/master_state">
+      <obj_property name="ElementShortName">master_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">master_state[31:0]</obj_property>
    </wvobject>
 </wave_config>

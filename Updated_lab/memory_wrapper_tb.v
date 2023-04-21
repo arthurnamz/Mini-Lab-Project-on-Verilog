@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module memory_wrapper_tb;
-    parameter PERIOD = 2; 
+    parameter PERIOD = 10; 
     parameter MEM_SIZE = 4096; 
     parameter ADDR_WIDTH = 12;
     parameter DATA_WIDTH = 32; 
@@ -47,51 +47,51 @@ module memory_wrapper_tb;
     always #(PERIOD/2) m01_axis_aclk = ~m01_axis_aclk;
 
     initial begin
-        s01_axis_aresetn = 1'b0;
-        m01_axis_aresetn = 1'b0;
+        s01_axis_aresetn = 0;
+        m01_axis_aresetn = 0;
         #2;
-        s01_axis_aresetn = 1'b1;
-        m01_axis_aresetn = 1'b1;
+        s01_axis_aresetn = 1;
+        m01_axis_aresetn = 1;
        
 
         // test 1
-        #10;
+        #100;
         // write data in the memory
         s01_axis_tdata = 32'h0055;
-        s01_axis_tstrb = 1'b1;
-        s01_axis_tvalid = 1'b1;
-        s01_axis_tlast = 1'b1;
+        s01_axis_tstrb = 1;
+        s01_axis_tvalid = 1;
+        s01_axis_tlast = 1;
 
         // test 2
-        #10;
+        #100;
         // write data in the memory
         s01_axis_tdata = 32'h0022;
-        s01_axis_tstrb = 1'b1;
-        s01_axis_tvalid = 1'b1;
-        s01_axis_tlast = 1'b1;
+        s01_axis_tstrb = 1;
+        s01_axis_tvalid = 1;
+        s01_axis_tlast = 1;
 
         // test 3
-        #10;
+        #100;
         // write data in the memory
         s01_axis_tdata = 32'h0024;
-        s01_axis_tstrb = 1'b1;
-        s01_axis_tvalid = 1'b1;
-        s01_axis_tlast = 1'b1;
+        s01_axis_tstrb = 1;
+        s01_axis_tvalid = 1;
+        s01_axis_tlast = 1;
 
         // // test 1 data out
-        #20;
+        #200;
          // Read data from the memory
-        m01_axis_tready = 1'b1;
+        m01_axis_tready = 1;
 
         // // test 2 data out
-        #20;
+        #200;
          // Read data from the memory
-        m01_axis_tready = 1'b1;
+        m01_axis_tready = 1;
 
         // // test 3 data out
-        #20;
+        #200;
          // Read data from the memory
-        m01_axis_tready = 1'b1;
+        m01_axis_tready = 1;
 
         
 

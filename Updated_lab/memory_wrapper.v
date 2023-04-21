@@ -11,16 +11,16 @@ module memory_wrapper #(
   input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
   input s01_axis_tvalid,
   input s01_axis_tlast,
-  output  s01_axis_tready,
+  output wire s01_axis_tready,
 
   // Master output ports
   input m01_axis_aclk,
   input m01_axis_aresetn,
   input m01_axis_tready,
-  output  [DATA_WIDTH-1:0] m01_axis_tdata,
-  output  [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
-  output  m01_axis_tvalid,
-  output  m01_axis_tlast
+  output wire [DATA_WIDTH-1:0] m01_axis_tdata,
+  output wire [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
+  output wire m01_axis_tvalid,
+  output wire m01_axis_tlast
 );
 
 wire [DATA_WIDTH-1:0]  connect_s02_axis_tdata;
@@ -29,7 +29,7 @@ wire connect_s02_axis_tvalid;
 wire connect_s02_axis_tlast;
 wire connect_m01_axis_tready;
 
-memory_controller #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) mem_controller(
+memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
         .s01_axis_aclk(s01_axis_aclk),
         .s01_axis_aresetn(s01_axis_aresetn),
         .s01_axis_tdata(s01_axis_tdata),
@@ -40,7 +40,7 @@ memory_controller #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DA
 
         .m01_axis_aclk(m01_axis_aclk),
         .m01_axis_aresetn(m01_axis_aresetn),
-        .m01_axis_tready(connect_m01_axis_tready),
+        .m01_axis_tready(m01_axis_tready),
         .m01_axis_tdata(connect_s02_axis_tdata),
         .m01_axis_tstrb(connect_s02_axis_tstrb),
         .m01_axis_tvalid(connect_s02_axis_tvalid),
@@ -54,7 +54,7 @@ memory_controller #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DA
         .s02_axis_tstrb(connect_s02_axis_tstrb),
         .s02_axis_tvalid(connect_s02_axis_tvalid),
         .s02_axis_tlast(connect_s02_axis_tlast),
-        .s02_axis_tready(connect_m01_axis_tready),
+        .s02_axis_tready(s02_axis_tready),
 
         .m02_axis_aclk(m01_axis_aclk),
         .m02_axis_aresetn(m01_axis_aresetn),
