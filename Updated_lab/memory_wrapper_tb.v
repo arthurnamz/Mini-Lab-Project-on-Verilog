@@ -63,7 +63,7 @@ module memory_wrapper_tb;
         s01_axis_tlast = 1;
 
         // test 2
-        #100;
+        #200;
         // write data in the memory
         s01_axis_tdata = 32'h0022;
         s01_axis_tstrb = 1;
@@ -71,7 +71,7 @@ module memory_wrapper_tb;
         s01_axis_tlast = 1;
 
         // test 3
-        #100;
+        #200;
         // write data in the memory
         s01_axis_tdata = 32'h0024;
         s01_axis_tstrb = 1;
