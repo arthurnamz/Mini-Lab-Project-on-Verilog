@@ -73,20 +73,20 @@ module memory_controller #(
         IDLE_MASTER: begin
             if(flag1) begin
                 master_state <= WAIT_FOR_MEMORY;
-                m01_axis_tvalid <= 0;
-                m01_axis_tdata <= 'bz;
-                m01_axis_tstrb <= 0;
-                m01_axis_tlast <= 0;
+                // m01_axis_tvalid <= 0;
+                // m01_axis_tdata <= 'bz;
+                // m01_axis_tstrb <= 0;
+                // m01_axis_tlast <= 0;
                 flag2 <= 0;
             end
         end
         WAIT_FOR_MEMORY: begin
             if(m01_axis_tready) begin
                 master_state <= WRITE_TO_MEMORY;
-                m01_axis_tvalid <= 0;
-                m01_axis_tdata <= 'bz;
-                m01_axis_tstrb <= 0;
-                m01_axis_tlast <= 0;
+                // m01_axis_tvalid <= 0;
+                // m01_axis_tdata <= 'bz;
+                // m01_axis_tstrb <= 0;
+                // m01_axis_tlast <= 0;
                 flag2 <= 0;
             end
         end
