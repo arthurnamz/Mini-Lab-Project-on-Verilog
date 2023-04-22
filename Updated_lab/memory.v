@@ -47,7 +47,6 @@ always @(posedge s02_axis_aclk) begin
     end
 end
 
-
 // Read operation
 always @(posedge m02_axis_aclk) begin
         if(~m02_axis_aresetn) begin
