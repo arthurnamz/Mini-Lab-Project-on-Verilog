@@ -90,11 +90,11 @@ module memory_controller #(
             end
         end
         WRITE_TO_MEMORY: begin
-            master_state <= SYNC_MEMORY;
-            m01_axis_tvalid <= 1;
-            m01_axis_tdata <= tmp;
+            m01_axis_tvalid <= 1;            
             m01_axis_tstrb <= 'b1;
-            m01_axis_tlast <= 1;            
+            m01_axis_tlast <= 1; 
+            m01_axis_tdata <= tmp;
+            master_state <= SYNC_MEMORY;                       
         end
         SYNC_MEMORY: begin
           master_state <= NOTIFY_SLAVE_PORT;

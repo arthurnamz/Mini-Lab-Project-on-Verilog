@@ -60,9 +60,9 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
         .m02_axis_aresetn(m01_axis_aresetn),
         .m02_axis_tready(m01_axis_tready),
         .m02_axis_rd_tdata(m01_axis_tdata),
-        .m02_axis_tstrb(connect_s02_axis_tstrb),
-        .m02_axis_tvalid(connect_s02_axis_tvalid),
-        .m02_axis_tlast(connect_s02_axis_tlast)        
+        .m02_axis_tstrb(m01_axis_tstrb),
+        .m02_axis_tvalid(m01_axis_tvalid),
+        .m02_axis_tlast(m01_axis_tlast)        
     );
 
 

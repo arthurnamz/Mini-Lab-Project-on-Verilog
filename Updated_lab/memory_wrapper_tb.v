@@ -66,7 +66,7 @@ module memory_wrapper_tb;
     #40;
     s01_axis_tvalid = 0;
     // Wait for module to signal readiness
-    #10;
+    #30;
 
     // Read data from module
     m01_axis_tready = 1;
