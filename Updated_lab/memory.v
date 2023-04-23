@@ -47,6 +47,7 @@ always @(posedge s02_axis_aclk) begin
         notify <= 1;
     end else begin
         s02_axis_tready <= 1;
+        notify <= 0;
     end
 end
 
@@ -55,7 +56,6 @@ always @(posedge m02_axis_aclk) begin
         if(~m02_axis_aresetn) begin
             rd_addr_counter <= 0;
             m02_axis_rd_tdata <= 'bz;
-            notify <= 0;
         end else if ( m02_axis_tready && notify == 1 ) begin
             m02_axis_rd_tdata <= mem[rd_addr_counter];
             rd_addr_counter <= rd_addr_counter + 1;
@@ -64,7 +64,6 @@ always @(posedge m02_axis_aclk) begin
             m02_axis_tlast <= 1;
         end else begin
             m02_axis_rd_tdata <= 'bz;
-            notify <= 0;
         end
 end
 
