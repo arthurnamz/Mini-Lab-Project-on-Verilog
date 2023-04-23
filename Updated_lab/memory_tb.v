@@ -58,7 +58,7 @@ module memory_tb;
         #10;
         // write data in the memory
         s02_axis_wr_tdata = 32'h0055;
-        s02_axis_tstrb = 1'b1;
+        s02_axis_tstrb = 'b1;
         s02_axis_tvalid = 1'b1;
         s02_axis_tlast = 1'b1;
 
@@ -66,7 +66,7 @@ module memory_tb;
         #10;
         // write data in the memory
         s02_axis_wr_tdata = 32'h0022;
-        s02_axis_tstrb = 1'b1;
+        s02_axis_tstrb = 'b1;
         s02_axis_tvalid = 1'b1;
         s02_axis_tlast = 1'b1;
 
@@ -74,7 +74,7 @@ module memory_tb;
         #10;
         // write data in the memory
         s02_axis_wr_tdata = 32'h0024;
-        s02_axis_tstrb = 1'b1;
+        s02_axis_tstrb = 'b1;
         s02_axis_tvalid = 1'b1;
         s02_axis_tlast = 1'b1;
 
