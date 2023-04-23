@@ -11,12 +11,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="593.553 ns"></ZoomEndTime>
+      <ZoomEndTime time="710.001 ns"></ZoomEndTime>
       <Cursor1Time time="34.486 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="80"></ValueColumnWidth>
+      <ValueColumnWidth column_width="76"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="48" />
    <wvobject fp_name="divider15" type="divider">
@@ -170,6 +170,7 @@
    <wvobject type="array" fp_name="/memory_wrapper_tb/dut/mem/m02_axis_rd_tdata">
       <obj_property name="ElementShortName">m02_axis_rd_tdata[31:0]</obj_property>
       <obj_property name="ObjectShortName">m02_axis_rd_tdata[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/memory_wrapper_tb/dut/mem/m02_axis_tstrb">
       <obj_property name="ElementShortName">m02_axis_tstrb[3:0]</obj_property>
@@ -202,6 +203,7 @@
    <wvobject type="array" fp_name="/memory_wrapper_tb/m01_axis_tdata">
       <obj_property name="ElementShortName">m01_axis_tdata[31:0]</obj_property>
       <obj_property name="ObjectShortName">m01_axis_tdata[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/memory_wrapper_tb/m01_axis_tstrb">
       <obj_property name="ElementShortName">m01_axis_tstrb[3:0]</obj_property>
