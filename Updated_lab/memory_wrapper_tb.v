@@ -49,50 +49,51 @@ module memory_wrapper_tb;
     initial begin
         s01_axis_aresetn = 0;
         m01_axis_aresetn = 0;
-        #2;
+        #4;
         s01_axis_aresetn = 1;
         m01_axis_aresetn = 1;
-       
+    
 
         // test 1
-        #100;
+        #20;
         // write data in the memory
         s01_axis_tdata = 32'h0055;
-        s01_axis_tstrb = 1;
+        s01_axis_tstrb = 'b1;
         s01_axis_tvalid = 1;
         s01_axis_tlast = 1;
+         #10;
+         // Read data from the memory
+        m01_axis_tready = 1;
 
         // test 2
-        #200;
+        #40;
         // write data in the memory
         s01_axis_tdata = 32'h0022;
-        s01_axis_tstrb = 1;
+        s01_axis_tstrb = 'b1;
         s01_axis_tvalid = 1;
         s01_axis_tlast = 1;
 
         // test 3
-        #200;
+        #60;
         // write data in the memory
         s01_axis_tdata = 32'h0024;
-        s01_axis_tstrb = 1;
+        s01_axis_tstrb = 'b1;
         s01_axis_tvalid = 1;
         s01_axis_tlast = 1;
 
         // // test 1 data out
         #200;
          // Read data from the memory
-        m01_axis_tready = 1;
+        m01_axis_tready = 0;
 
         // // test 2 data out
-        #200;
+        #400;
          // Read data from the memory
         m01_axis_tready = 1;
 
         // // test 3 data out
         #200;
-         // Read data from the memory
-        m01_axis_tready = 1;
-
+        
         
 
         #300;
