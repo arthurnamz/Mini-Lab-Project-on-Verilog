@@ -1,59 +1,68 @@
 `timescale 1ns/1ns
 
-module generator_fifo_wrapper_tb;
+module main_wrapper_tb;
 
     // Parameters
-    parameter DATA_SIZE = 32;
+    parameter MEM_SIZE = 4096;
+    parameter ADDR_WIDTH = 12;
+    parameter DATA_WIDTH = 32;
 
-    // Input ports
-    reg m00_axis_aclk = 0;
-    reg m00_axis_aresetn;
-    reg m00_axis_enable;
-    reg m00_axis_tready;
+    // slave ports
+    reg  s03_axis_aclk = 0;
+    reg  s03_axis_aresetn;
+    reg  s03_axis_enable;
+   
+    // master ports
+    reg  m03_axis_aclk = 0;
+    reg  m03_axis_aresetn;
+    reg  m03_axis_tready;
+    wire [DATA_SIZE-1:0]  m03_axis_tdata;
+    wire [(DATA_SIZE/8)-1 : 0] m03_axis_tstrb;
+    wire m03_axis_tvalid;
+    wire m03_axis_tlast;
 
-    // Output ports
-    wire [DATA_SIZE-1:0]  m00_axis_tdata;
-    wire [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb;
-    wire m00_axis_tvalid;
-    wire m00_axis_tlast;
-
-    // Instantiate the DUT
-    generator_fifo_wrapper #(
-        .DATA_SIZE(DATA_SIZE)
-    ) dut (
-        .m00_axis_aclk(m00_axis_aclk),
-        .m00_axis_aresetn(m00_axis_aresetn),
-        .m00_axis_enable(m00_axis_enable),
-        .m00_axis_tdata(m00_axis_tdata),
-        .m00_axis_tstrb(m00_axis_tstrb),
-        .m00_axis_tvalid(m00_axis_tvalid),
-        .m00_axis_tlast(m00_axis_tlast),
-        .m00_axis_tready(m00_axis_tready)
+    // Instantiate the main wrapper dut
+    main_wrapper #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) dut(
+          // slave ports
+            .s03_axis_aclk(s03_axis_aclk),
+            .s03_axis_aresetn(s03_axis_aresetn),
+            .s03_axis_enable(s03_axis_enable),
+        
+            // master ports
+            .m03_axis_aclk(m03_axis_aclk),
+            .m03_axis_aresetn(m03_axis_aresetn),
+            .m03_axis_tready(m03_axis_tready),
+            .m03_axis_tdata(m03_axis_tdata),
+            .m03_axis_tstrb(m03_axis_tstrb),
+            .m03_axis_tvalid(m03_axis_tvalid),
+            .m03_axis_tlast(m03_axis_tlast)
     );
 
     // Clock generation
-    always #15 m00_axis_aclk = ~m00_axis_aclk;
+    always #5 s03_axis_aclk = ~s03_axis_aclk;
+    always #5 m03_axis_aclk = ~m03_axis_aclk;
 
     // Reset generation
     initial begin
-        #2;
-        m00_axis_aresetn = 0;
-        #100;
-        m00_axis_aresetn = 1;
+        s03_axis_aresetn = 0;
+        m03_axis_aresetn = 0;
+        #10;
+        s03_axis_aresetn = 1;
+        m03_axis_aresetn = 1;
     end
 
     // Test stimulus
     initial begin
         #10
-        m00_axis_enable = 1;
-        m00_axis_tready = 1;
+        s03_axis_enable = 1;
+        m03_axis_tready = 1;
 
         #100
-        m00_axis_enable = 0;
-        m00_axis_tready = 0;
+        s03_axis_enable = 0;
+        m03_axis_tready = 0;
         #100
-        m00_axis_enable = 1;
-        m00_axis_tready = 1;
+        s03_axis_enable = 1;
+        m03_axis_tready = 1;
         #1000
         $finish;
     end

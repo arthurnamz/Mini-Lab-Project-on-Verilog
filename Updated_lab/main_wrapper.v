@@ -1,5 +1,6 @@
 module main_wrapper #(
   // Parameter declarations
+  parameter MEM_SIZE = 4096,
   parameter ADDR_WIDTH = 12,
   parameter DATA_WIDTH = 32
 ) (
@@ -28,7 +29,7 @@ wire connect_m00_axis_tready;
 
 // Instantiate the DUT
     generator_fifo_wrapper #(
-        .DATA_SIZE(DATA_SIZE)
+        .DATA_SIZE(DATA_WIDTH)
     ) dut (
         .m00_axis_aclk(s03_axis_aclk),
         .m00_axis_aresetn(s03_axis_aresetn),
