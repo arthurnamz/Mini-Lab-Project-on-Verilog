@@ -11,16 +11,16 @@ module memory_wrapper #(
   input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
   input s01_axis_tvalid,
   input s01_axis_tlast,
-  output wire s01_axis_tready,
+  output reg s01_axis_tready,
 
   // Master output ports
   input m01_axis_aclk,
   input m01_axis_aresetn,
   input m01_axis_tready,
-  output wire [DATA_WIDTH-1:0] m01_axis_tdata,
-  output wire [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
-  output wire m01_axis_tvalid,
-  output wire m01_axis_tlast
+  output reg [DATA_WIDTH-1:0] m01_axis_tdata,
+  output reg [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
+  output reg m01_axis_tvalid,
+  output reg m01_axis_tlast
 );
 
 wire [DATA_WIDTH-1:0]  connect_s02_axis_tdata;
