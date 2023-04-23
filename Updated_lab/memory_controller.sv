@@ -28,7 +28,7 @@ module memory_controller #(
 
   // State machine states
   typedef enum {IDLE_SLAVE,CACHE,WAIT_FOR_MASTER } slave_states;
-  typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT } master_states;
+  typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT, SYNC_MEMORY } master_states;
   slave_states slave_state;
   master_states master_state;
 
@@ -90,11 +90,14 @@ module memory_controller #(
             end
         end
         WRITE_TO_MEMORY: begin
-            master_state <= NOTIFY_SLAVE_PORT;
+            master_state <= SYNC_MEMORY;
             m01_axis_tvalid <= 1;
             m01_axis_tdata <= tmp;
             m01_axis_tstrb <= 'b1;
             m01_axis_tlast <= 1;            
+        end
+        SYNC_MEMORY: begin
+          master_state <= NOTIFY_SLAVE_PORT;
         end
         NOTIFY_SLAVE_PORT: begin
           master_state <= IDLE_MASTER;
