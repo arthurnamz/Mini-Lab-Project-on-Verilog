@@ -88,6 +88,7 @@ assign m00_axis_tvalid = m00_axis_tvalid_reg;
 
 assign mem_write_data = {s00_axis_tlast, s00_axis_tdata};
 assign {m00_axis_tlast, m00_axis_tdata} = m00_data_reg;
+assign m00_axis_tstrb = 'b1;
 
 // reset synchronization
 always @(posedge s00_axis_aclk) begin
