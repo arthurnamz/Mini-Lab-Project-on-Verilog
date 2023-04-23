@@ -46,59 +46,46 @@ module memory_wrapper_tb;
     always #(PERIOD/2) s01_axis_aclk = ~s01_axis_aclk;
     always #(PERIOD/2) m01_axis_aclk = ~m01_axis_aclk;
 
-    initial begin
-        s01_axis_aresetn = 0;
-        m01_axis_aresetn = 0;
-        #4;
-        s01_axis_aresetn = 1;
-        m01_axis_aresetn = 1;
+  // Reset generation
+  initial begin
+    s01_axis_aresetn = 0;
+    m01_axis_aresetn = 0;
+    #10;
+     s01_axis_aresetn = 1;
+     m01_axis_aresetn = 1;
+  end
+
+  // Testcase 1: Write data to memory and read it back
+  initial begin
+    // Send data to module
+    s01_axis_tdata = 32'h68;
+    s01_axis_tstrb = 'b1;
+    s01_axis_tvalid = 1;
+    s01_axis_tlast = 1;
+    m01_axis_tready = 0;
+    #40;
+    s01_axis_tvalid = 0;
+    // Wait for module to signal readiness
+    #10;
+
+    // Read data from module
+    m01_axis_tready = 1;
+
+    // Wait for module to signal readiness
+    #200;
+   // Send data to module
+    s01_axis_tdata = 32'h55;
+    s01_axis_tstrb = 'b1;
+    s01_axis_tvalid = 1;
+    s01_axis_tlast = 1;
+    #40;
+    s01_axis_tvalid = 0;
+    #200 m01_axis_tready = 0;
     
-
-        // test 1
-        #20;
-        // write data in the memory
-        s01_axis_tdata = 32'h0055;
-        s01_axis_tstrb = 'b1;
-        s01_axis_tvalid = 1;
-        s01_axis_tlast = 1;
-         #10;
-         // Read data from the memory
-        m01_axis_tready = 1;
-
-        // test 2
-        #40;
-        // write data in the memory
-        s01_axis_tdata = 32'h0022;
-        s01_axis_tstrb = 'b1;
-        s01_axis_tvalid = 1;
-        s01_axis_tlast = 1;
-
-        // test 3
-        #60;
-        // write data in the memory
-        s01_axis_tdata = 32'h0024;
-        s01_axis_tstrb = 'b1;
-        s01_axis_tvalid = 1;
-        s01_axis_tlast = 1;
-
-        // // test 1 data out
-        #200;
-         // Read data from the memory
-        m01_axis_tready = 0;
-
-        // // test 2 data out
-        #400;
-         // Read data from the memory
-        m01_axis_tready = 1;
-
-        // // test 3 data out
-        #200;
-        
-        
-
-        #300;
-
-        $finish;
+    // Wait for read to complete
+    #200;
+    
+    $finish;
     end
 
 
