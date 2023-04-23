@@ -51,11 +51,11 @@ always @(posedge s02_axis_aclk) begin
 end
 
 // Read operation
-always @(posedge m02_axis_aclk ,notify) begin
+always @(posedge m02_axis_aclk) begin
         if(~m02_axis_aresetn) begin
             rd_addr_counter <= 0;
             m02_axis_rd_tdata <= 'bz;
-        end else if ( m02_axis_tready ) begin
+        end else if ( m02_axis_tready && notify == 1 ) begin
             m02_axis_rd_tdata <= mem[rd_addr_counter];
             rd_addr_counter <= rd_addr_counter + 1;
             m02_axis_tvalid <= 1;
