@@ -48,31 +48,37 @@ module memory_controller_tb;
   initial begin
     s01_axis_aresetn = 0;
     m01_axis_aresetn = 0;
-    #50 s01_axis_aresetn = 1;
-    #50 m01_axis_aresetn = 1;
+    #10;
+     s01_axis_aresetn = 1;
+     m01_axis_aresetn = 1;
   end
 
   // Testcase 1: Write data to memory and read it back
   initial begin
     // Send data to module
     s01_axis_tdata = 32'h68;
-    s01_axis_tstrb = 1;
+    s01_axis_tstrb = 'b1;
     s01_axis_tvalid = 1;
     s01_axis_tlast = 1;
     m01_axis_tready = 0;
-
+    #40;
+    s01_axis_tvalid = 0;
     // Wait for module to signal readiness
-    #200;
-
-    #20;
+    #10;
 
     // Read data from module
     m01_axis_tready = 1;
 
     // Wait for module to signal readiness
     #200;
-   
-m01_axis_tready = 0;
+   // Send data to module
+    s01_axis_tdata = 32'h55;
+    s01_axis_tstrb = 'b1;
+    s01_axis_tvalid = 1;
+    s01_axis_tlast = 1;
+    #40;
+    s01_axis_tvalid = 0;
+    #200 m01_axis_tready = 0;
     
     // Wait for read to complete
     #200;

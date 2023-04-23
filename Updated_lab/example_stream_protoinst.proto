@@ -1,0 +1,35 @@
+{
+	"version": "1.0",
+	"modules": {
+		"memory_controller_tb": {
+			"proto_instances": {
+
+							"MEM_CTRL_MASTER": {
+													"interface": "xilinx.com:interface:axis:1.0",
+													"ports": {
+																"ACLK": { "actual": "m01_axis_aclk"},
+																"ARESETN": { "actual": "m01_axis_aresetn"},
+																"TDATA": { "actual": "m01_axis_tdata"},
+																"TREADY": { "actual": "m01_axis_tready"},
+																"TVALID": { "actual": "m01_axis_tvalid"},
+																"TSTRB": { "actual": "m01_axis_tstrb"},
+																"TLAST":{ "actual": "m01_axis_tlast"}
+															}
+												},
+							"MEM_CTRL_SLAVE": {
+													"interface": "xilinx.com:interface:axis:1.0",
+													"ports": {
+																"ACLK": { "actual": "s01_axis_aclk"},
+																"ARESETN": { "actual": "s01_axis_aresetn"},
+																"TDATA": { "actual": "s01_axis_tdata"},
+																"TREADY": { "actual": "s01_axis_tready"},
+																"TVALID": { "actual": "s01_axis_tvalid"},
+																"TSTRB": { "actual": "s01_axis_tstrb"},
+																"TLAST":{ "actual": "s01_axis_tlast"}
+															}
+												}
+				
+								}
+						}
+				}
+}

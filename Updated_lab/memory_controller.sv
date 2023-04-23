@@ -40,10 +40,10 @@ module memory_controller #(
     end else begin
       case (slave_state)
         IDLE_SLAVE: begin
+          flag1 <= 0;
             if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
                 slave_state <= CACHE;
                 s01_axis_tready <= 1;
-                flag1 <= 0;
             end
         end
         CACHE: begin
@@ -53,10 +53,10 @@ module memory_controller #(
            slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
+          flag1 <= 0;
             if(flag2) begin
                 slave_state <= IDLE_SLAVE;
                 s01_axis_tready <= 1;
-                flag1 <= 0;
             end
         end
       endcase
@@ -64,20 +64,20 @@ module memory_controller #(
   end
 
 // Master interface
-  always @(posedge m01_axis_aclk) begin
+  always @(posedge m01_axis_aclk ,flag1) begin
     if (~m01_axis_aresetn) begin
         m01_axis_tdata <= 'bz;
         master_state <= IDLE_MASTER;
     end else begin
       case (master_state)
         IDLE_MASTER: begin
-            if(flag1) begin
+            flag2 <= 0;
+            if(flag1 == 1'b1) begin
                 master_state <= WAIT_FOR_MEMORY;
                 m01_axis_tvalid <= 0;
                 m01_axis_tdata <= 'bz;
                 m01_axis_tstrb <= 0;
                 m01_axis_tlast <= 0;
-                flag2 <= 0;
             end
         end
         WAIT_FOR_MEMORY: begin
@@ -87,21 +87,18 @@ module memory_controller #(
                 m01_axis_tdata <= 'bz;
                 m01_axis_tstrb <= 0;
                 m01_axis_tlast <= 0;
-                flag2 <= 0;
             end
         end
         WRITE_TO_MEMORY: begin
             master_state <= NOTIFY_SLAVE_PORT;
             m01_axis_tvalid <= 1;
             m01_axis_tdata <= tmp;
-            m01_axis_tstrb <= 1;
-            m01_axis_tlast <= 1;
-            flag2 <= 0;
-            
+            m01_axis_tstrb <= 'b1;
+            m01_axis_tlast <= 1;            
         end
         NOTIFY_SLAVE_PORT: begin
           master_state <= IDLE_MASTER;
-          flag2 = 1;
+          flag2 <= 1;
         end
       endcase
     end
