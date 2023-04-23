@@ -57,4 +57,5 @@ wire connect_m00_axis_tready;
         .m01_axis_tvalid(m03_axis_tvalid),
         .m01_axis_tlast(m03_axis_tlast)        
     );
+    endmodule
 
