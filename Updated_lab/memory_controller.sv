@@ -64,7 +64,7 @@ module memory_controller #(
   end
 
 // Master interface
-  always @(posedge m01_axis_aclk ,flag1) begin
+  always @(posedge m01_axis_aclk) begin
     if (~m01_axis_aresetn) begin
         m01_axis_tdata <= 'bz;
         master_state <= IDLE_MASTER;

@@ -11,16 +11,16 @@ module memory_wrapper #(
   input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
   input s01_axis_tvalid,
   input s01_axis_tlast,
-  output reg s01_axis_tready,
+  output wire s01_axis_tready,
 
   // Master output ports
   input m01_axis_aclk,
   input m01_axis_aresetn,
   input m01_axis_tready,
-  output reg [DATA_WIDTH-1:0] m01_axis_tdata,
-  output reg [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
-  output reg m01_axis_tvalid,
-  output reg m01_axis_tlast
+  output wire [DATA_WIDTH-1:0] m01_axis_tdata,
+  output wire [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
+  output wire m01_axis_tvalid,
+  output wire m01_axis_tlast
 );
 
 wire [DATA_WIDTH-1:0]  connect_s02_axis_tdata;
@@ -60,9 +60,9 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
         .m02_axis_aresetn(m01_axis_aresetn),
         .m02_axis_tready(m01_axis_tready),
         .m02_axis_rd_tdata(m01_axis_tdata),
-        .m02_axis_tstrb(m01_axis_tstrb),
-        .m02_axis_tvalid(m01_axis_tvalid),
-        .m02_axis_tlast(m01_axis_tlast)        
+        .m02_axis_tstrb(connect_s02_axis_tstrb),
+        .m02_axis_tvalid(connect_s02_axis_tvalid),
+        .m02_axis_tlast(connect_s02_axis_tlast)        
     );
 
 
