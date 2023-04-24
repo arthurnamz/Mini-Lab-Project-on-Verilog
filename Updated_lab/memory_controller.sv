@@ -56,7 +56,6 @@ end
           s01_axis_tready <= 0;
           if(flag3)begin
           flag1 <= 1;
-          flag3 <= 0;
           end
           slave_state <= WAIT_FOR_MASTER;
         end
@@ -102,7 +101,10 @@ end
             m01_axis_tvalid <= 1;            
             m01_axis_tstrb <= 'b1;
             m01_axis_tlast <= 1; 
+            if(flag3)begin
             m01_axis_tdata <= tmp;
+            flag3 <= 0;
+            end
             master_state <= NOTIFY_SLAVE_PORT;                       
         end
         NOTIFY_SLAVE_PORT: begin
