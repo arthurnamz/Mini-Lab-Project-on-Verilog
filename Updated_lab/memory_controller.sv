@@ -23,6 +23,7 @@ module memory_controller #(
 
   // Internal registers 
   reg [DATA_WIDTH-1:0] tmp;
+  reg [DATA_WIDTH-1:0] hold_tmp;
   reg flag1 = 0;
   reg flag2 = 0;
 
@@ -41,13 +42,14 @@ module memory_controller #(
       case (slave_state)
         IDLE_SLAVE: begin
           flag1 <= 0;
+          hold_tmp <= s01_axis_tdata;
             if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
                 slave_state <= CACHE;
                 s01_axis_tready <= 1;
             end
         end
         CACHE: begin
-           tmp <= s01_axis_tdata;
+           tmp <= hold_tmp;
            s01_axis_tready <= 0;
            flag1 <= 1;
            slave_state <= WAIT_FOR_MASTER;
