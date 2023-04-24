@@ -11,13 +11,14 @@ module main_wrapper_tb;
     reg  s03_axis_aclk = 0;
     reg  s03_axis_aresetn;
     reg  s03_axis_enable;
+    wire s03_axis_tready;
    
     // master ports
     reg  m03_axis_aclk = 0;
     reg  m03_axis_aresetn;
     reg  m03_axis_tready;
-    wire [DATA_SIZE-1:0]  m03_axis_tdata;
-    wire [(DATA_SIZE/8)-1 : 0] m03_axis_tstrb;
+    wire [DATA_WIDTH-1:0]  m03_axis_tdata;
+    wire [(DATA_WIDTH/8)-1 : 0] m03_axis_tstrb;
     wire m03_axis_tvalid;
     wire m03_axis_tlast;
 
@@ -27,6 +28,7 @@ module main_wrapper_tb;
             .s03_axis_aclk(s03_axis_aclk),
             .s03_axis_aresetn(s03_axis_aresetn),
             .s03_axis_enable(s03_axis_enable),
+            .s03_axis_tready(s03_axis_tready),
         
             // master ports
             .m03_axis_aclk(m03_axis_aclk),
@@ -53,17 +55,12 @@ module main_wrapper_tb;
 
     // Test stimulus
     initial begin
-        #10
+        #50;
         s03_axis_enable = 1;
         m03_axis_tready = 1;
+        #700;
 
-        #100
-        s03_axis_enable = 0;
-        m03_axis_tready = 0;
-        #100
-        s03_axis_enable = 1;
-        m03_axis_tready = 1;
-        #1000
+        #200;
         $finish;
     end
 

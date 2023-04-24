@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="work.main_wrapper_tb.wdb" id="1">
+         <top_modules>
+            <top_module name="main_wrapper_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="920.923 ns"></ZoomEndTime>
+      <Cursor1Time time="110.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="41" />
+   <wvobject fp_name="divider11" type="divider">
+      <obj_property name="label">Inputs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/s03_axis_aclk">
+      <obj_property name="ElementShortName">s03_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">s03_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/s03_axis_aresetn">
+      <obj_property name="ElementShortName">s03_axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">s03_axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/s03_axis_enable">
+      <obj_property name="ElementShortName">s03_axis_enable</obj_property>
+      <obj_property name="ObjectShortName">s03_axis_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider21" type="divider">
+      <obj_property name="label">generator_fifo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_aclk">
+      <obj_property name="ElementShortName">m00_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_aresetn">
+      <obj_property name="ElementShortName">m00_axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_enable">
+      <obj_property name="ElementShortName">m00_axis_enable</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tready">
+      <obj_property name="ElementShortName">m00_axis_tready</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tdata">
+      <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tstrb">
+      <obj_property name="ElementShortName">m00_axis_tstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_tstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tvalid">
+      <obj_property name="ElementShortName">m00_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tlast">
+      <obj_property name="ElementShortName">m00_axis_tlast</obj_property>
+      <obj_property name="ObjectShortName">m00_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider12" type="divider">
+      <obj_property name="label">output</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_aclk">
+      <obj_property name="ElementShortName">m03_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_aresetn">
+      <obj_property name="ElementShortName">m03_axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tready">
+      <obj_property name="ElementShortName">m03_axis_tready</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/m03_axis_tdata">
+      <obj_property name="ElementShortName">m03_axis_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/m03_axis_tstrb">
+      <obj_property name="ElementShortName">m03_axis_tstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_tstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tvalid">
+      <obj_property name="ElementShortName">m03_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tlast">
+      <obj_property name="ElementShortName">m03_axis_tlast</obj_property>
+      <obj_property name="ObjectShortName">m03_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider58" type="divider">
+      <obj_property name="label">memo wrapper</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_aclk">
+      <obj_property name="ElementShortName">s01_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_aresetn">
+      <obj_property name="ElementShortName">s01_axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tdata">
+      <obj_property name="ElementShortName">s01_axis_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tstrb">
+      <obj_property name="ElementShortName">s01_axis_tstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_tstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tvalid">
+      <obj_property name="ElementShortName">s01_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tlast">
+      <obj_property name="ElementShortName">s01_axis_tlast</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tready">
+      <obj_property name="ElementShortName">s01_axis_tready</obj_property>
+      <obj_property name="ObjectShortName">s01_axis_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_aclk">
+      <obj_property name="ElementShortName">m01_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_aresetn">
+      <obj_property name="ElementShortName">m01_axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tready">
+      <obj_property name="ElementShortName">m01_axis_tready</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_tready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tdata">
+      <obj_property name="ElementShortName">m01_axis_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tstrb">
+      <obj_property name="ElementShortName">m01_axis_tstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_tstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tvalid">
+      <obj_property name="ElementShortName">m01_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tlast">
+      <obj_property name="ElementShortName">m01_axis_tlast</obj_property>
+      <obj_property name="ObjectShortName">m01_axis_tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/tmp">
+      <obj_property name="ElementShortName">tmp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tmp[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag1">
+      <obj_property name="ElementShortName">flag1</obj_property>
+      <obj_property name="ObjectShortName">flag1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag2">
+      <obj_property name="ElementShortName">flag2</obj_property>
+      <obj_property name="ObjectShortName">flag2</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/slave_state">
+      <obj_property name="ElementShortName">slave_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slave_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/master_state">
+      <obj_property name="ElementShortName">master_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">master_state[31:0]</obj_property>
+   </wvobject>
+</wave_config>
