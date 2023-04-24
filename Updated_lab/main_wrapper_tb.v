@@ -55,8 +55,9 @@ module main_wrapper_tb;
 
     // Test stimulus
     initial begin
-        #100;
+        #120;
         s03_axis_enable = 1;
+        #20;
         m03_axis_tready = 1;
         #400;
 
