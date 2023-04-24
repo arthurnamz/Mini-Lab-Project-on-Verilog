@@ -42,8 +42,8 @@ module memory_controller #(
       case (slave_state)
         IDLE_SLAVE: begin
           flag1 <= 0;
-          hold_tmp <= s01_axis_tdata;
             if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
+                hold_tmp <= s01_axis_tdata;
                 slave_state <= CACHE;
                 s01_axis_tready <= 1;
             end
