@@ -34,7 +34,7 @@ module memory_controller #(
   master_states master_state;
 
   always @(posedge s01_axis_aclk) begin
-    if(~flag3)begin
+    if(s01_axis_tlast)begin
       tmp <= s01_axis_tdata;
       flag3 <= 1;
     end
