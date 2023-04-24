@@ -32,7 +32,7 @@ module memory_controller #(
   typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT, SYNC_MEMORY } master_states;
   slave_states slave_state;
   master_states master_state;
-
+  assign buffer = s01_axis_tdata;
  // Slave interface
   always @(posedge s01_axis_aclk) begin
     if (~s01_axis_aresetn) begin
@@ -48,7 +48,6 @@ module memory_controller #(
             end
         end
         CACHE: begin
-          buffer <= s01_axis_tdata;
           if (flag1 == 1'b0 || buffer > tmp) begin
             tmp <= buffer;
           end
