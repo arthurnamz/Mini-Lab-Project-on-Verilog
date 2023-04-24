@@ -1,0 +1,113 @@
+module memory_controller #(
+  // Parameter declarations
+  parameter DATA_WIDTH = 32,
+  parameter BUFFER_DEPTH = 16
+) (
+  // Slave input ports
+  input s01_axis_aclk,
+  input s01_axis_aresetn,
+  input [DATA_WIDTH-1:0] s01_axis_tdata,
+  input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
+  input s01_axis_tvalid,
+  input s01_axis_tlast,
+  output reg s01_axis_tready,
+
+  // Master output ports
+  input m01_axis_aclk,
+  input m01_axis_aresetn,
+  input m01_axis_tready,
+  output reg [DATA_WIDTH-1:0] m01_axis_tdata,
+  output reg [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
+  output reg m01_axis_tvalid,
+  output reg m01_axis_tlast
+);
+
+  // Internal registers 
+  reg [DATA_WIDTH-1:0] tmp;
+  reg [BUFFER_DEPTH-1:0][DATA_WIDTH-1:0] buffer;
+  reg [BUFFER_DEPTH-1:0] counter;
+  reg flag1 = 0;
+  reg flag2 = 0;
+
+  // State machine states
+  typedef enum {IDLE_SLAVE, HOLD_DATA, OUTPUT_DATA, WAIT_FOR_MASTER } slave_states;
+  typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT, SYNC_MEMORY } master_states;
+  slave_states slave_state;
+  master_states master_state;
+
+ // Slave interface
+  always @(posedge s01_axis_aclk) begin
+    if (~s01_axis_aresetn) begin
+      s01_axis_tready <= 0;
+      slave_state <= IDLE_SLAVE;
+      counter <= 0;
+    end else begin
+      case (slave_state)
+        IDLE_SLAVE: begin
+          flag1 <= 0;
+          if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast && (counter < BUFFER_DEPTH)) begin
+            slave_state <= HOLD_DATA;
+            s01_axis_tready <= 1;
+          end
+        end
+        HOLD_DATA: begin
+          buffer[counter] <= s01_axis_tdata;
+          counter <= counter + 1;
+          if (counter == BUFFER_DEPTH) begin
+            slave_state <= OUTPUT_DATA;
+          end else begin
+            slave_state <= IDLE_SLAVE;
+          end
+          s01_axis_tready <= 0;
+        end
+        OUTPUT_DATA: begin
+          tmp <= buffer[0];
+          flag1 <= 1;
+          counter <= counter - 1;
+          for (int i = 0; i < BUFFER_DEPTH-1; i = i+1) begin
+            buffer[i] <= buffer[i+1
+
+            module memory_controller #(
+  // Parameter declarations
+  parameter DATA_WIDTH = 32
+) (
+  // Slave input ports
+  input s01_axis_aclk,
+  input s01_axis_aresetn,
+  input [DATA_WIDTH-1:0] s01_axis_tdata,
+  input [(DATA_WIDTH/8)-1:0] s01_axis_tstrb,
+  input s01_axis_tvalid,
+  input s01_axis_tlast,
+  output reg s01_axis_tready,
+
+  // Master output ports
+  input m01_axis_aclk,
+  input m01_axis_aresetn,
+  input m01_axis_tready,
+  output reg [DATA_WIDTH-1:0] m01_axis_tdata,
+  output reg [(DATA_WIDTH/8)-1:0] m01_axis_tstrb,
+  output reg m01_axis_tvalid,
+  output reg m01_axis_tlast
+);
+
+  // Internal registers 
+  reg [DATA_WIDTH-1:0] buffer [0:15];
+  reg [3:0] head = 0;
+  reg [3:0] tail = 0;
+
+  // State machine states
+  typedef enum {IDLE_SLAVE, WAIT_FOR_MASTER } slave_states;
+  typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT, SYNC_MEMORY } master_states;
+  slave_states slave_state;
+  master_states master_state;
+
+ // Slave interface
+  always @(posedge s01_axis_aclk) begin
+    if (~s01_axis_aresetn) begin
+      s01_axis_tready <= 0;
+      slave_state <= IDLE_SLAVE;
+    end else begin
+      case (slave_state)
+        IDLE_SLAVE: begin
+          if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
+            buffer[head] <= s01_axis_tdata;

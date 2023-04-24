@@ -23,9 +23,10 @@ module memory_controller #(
 
   // Internal registers 
   reg [DATA_WIDTH-1:0] tmp;
-  reg [DATA_WIDTH-1:0] hold_tmp;
   reg flag1 = 0;
   reg flag2 = 0;
+  reg counter = 0;
+  reg [DATA_WIDTH-1:0] hold[0:4095];
 
   // State machine states
   typedef enum {IDLE_SLAVE,CACHE,WAIT_FOR_MASTER } slave_states;
@@ -39,30 +40,21 @@ module memory_controller #(
       s01_axis_tready <= 0;
       slave_state <= IDLE_SLAVE;
     end else begin
+      hold[counter] <= s01_axis_tdata;
+      counter <= counter + 1;
       case (slave_state)
         IDLE_SLAVE: begin
           flag1 <= 0;
             if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
-                hold_tmp <= s01_axis_tdata;
                 slave_state <= CACHE;
                 s01_axis_tready <= 1;
             end
         end
         CACHE: begin
-          if(flag1 == 0) begin
-            tmp <= s01_axis_tdata;
-          end else begin
-            tmp <= {tmp, s01_axis_tdata};
-          end
-          flag1 <= 1;
-          s01_axis_tready <= 0;
-          if (s01_axis_tlast) begin
-            slave_state <= WAIT_FOR_MASTER;
-          end
-          //  tmp <= hold_tmp;
-          //  s01_axis_tready <= 0;
-          //  flag1 <= 1;
-          //  slave_state <= WAIT_FOR_MASTER;
+           tmp <= hold[counter];
+           s01_axis_tready <= 0;
+           flag1 <= 1;
+           slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
           flag1 <= 0;
@@ -102,6 +94,7 @@ module memory_controller #(
             end
         end
         WRITE_TO_MEMORY: begin
+          
             m01_axis_tvalid <= 1;            
             m01_axis_tstrb <= 'b1;
             m01_axis_tlast <= 1; 
