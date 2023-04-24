@@ -23,16 +23,21 @@ module memory_controller #(
 
   // Internal registers 
   reg [DATA_WIDTH-1:0] tmp;
-  reg [DATA_WIDTH-1:0] buffer;
   reg flag1 = 0;
   reg flag2 = 0;
+  reg flag3 = 0;
 
   // State machine states
   typedef enum {IDLE_SLAVE,CACHE,WAIT_FOR_MASTER } slave_states;
   typedef enum {IDLE_MASTER, WAIT_FOR_MEMORY, WRITE_TO_MEMORY, NOTIFY_SLAVE_PORT, SYNC_MEMORY } master_states;
   slave_states slave_state;
   master_states master_state;
-  assign buffer = s01_axis_tdata;
+
+  always @(posedge s01_axis_aclk) begin
+    tmp <= s01_axis_tdata;
+    flag3 <= 1;
+end
+
  // Slave interface
   always @(posedge s01_axis_aclk) begin
     if (~s01_axis_aresetn) begin
@@ -48,16 +53,12 @@ module memory_controller #(
             end
         end
         CACHE: begin
-          if (flag1 == 1'b0 || buffer > tmp) begin
-            tmp <= buffer;
-          end
           s01_axis_tready <= 0;
+          if(flag3)begin
           flag1 <= 1;
+          flag3 <= 0;
+          end
           slave_state <= WAIT_FOR_MASTER;
-          //  tmp <= hip_tmp;
-          //  s01_axis_tready <= 0;
-          //  flag1 <= 1;
-          //  slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
           flag1 <= 0;

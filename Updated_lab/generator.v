@@ -33,8 +33,8 @@ always @(posedge m00_axis_aclk) begin
         m00_axis_tlast <= 'b1;
     end else begin
         m00_axis_tvalid <= 'b0;
-        m00_axis_tstrb <= 'b0;
-        m00_axis_tlast <= 'b0;
+        m00_axis_tstrb <= 'b1;
+        m00_axis_tlast <= 'b1;
     end
 end
 
