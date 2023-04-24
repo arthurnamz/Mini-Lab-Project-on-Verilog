@@ -49,10 +49,20 @@ module memory_controller #(
             end
         end
         CACHE: begin
-           tmp <= hold_tmp;
-           s01_axis_tready <= 0;
-           flag1 <= 1;
-           slave_state <= WAIT_FOR_MASTER;
+          if(flag1 == 0) begin
+            tmp <= s01_axis_tdata;
+          end else begin
+            tmp <= {tmp, s01_axis_tdata};
+          end
+          flag1 <= 1;
+          s01_axis_tready <= 0;
+          if (s01_axis_tlast) begin
+            slave_state <= WAIT_FOR_MASTER;
+          end
+          //  tmp <= hold_tmp;
+          //  s01_axis_tready <= 0;
+          //  flag1 <= 1;
+          //  slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
           flag1 <= 0;
