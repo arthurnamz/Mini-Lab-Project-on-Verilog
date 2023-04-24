@@ -25,8 +25,6 @@ module memory_controller #(
   reg [DATA_WIDTH-1:0] tmp;
   reg flag1 = 0;
   reg flag2 = 0;
-  reg counter = 0;
-  reg [DATA_WIDTH-1:0] hold[0:4095];
 
   // State machine states
   typedef enum {IDLE_SLAVE,CACHE,WAIT_FOR_MASTER } slave_states;
@@ -40,8 +38,6 @@ module memory_controller #(
       s01_axis_tready <= 0;
       slave_state <= IDLE_SLAVE;
     end else begin
-      hold[counter] <= s01_axis_tdata;
-      counter <= counter + 1;
       case (slave_state)
         IDLE_SLAVE: begin
           flag1 <= 0;
@@ -51,7 +47,7 @@ module memory_controller #(
             end
         end
         CACHE: begin
-           tmp <= hold[counter];
+           tmp <= s01_axis_tdata;
            s01_axis_tready <= 0;
            flag1 <= 1;
            slave_state <= WAIT_FOR_MASTER;
