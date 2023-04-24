@@ -34,8 +34,10 @@ module memory_controller #(
   master_states master_state;
 
   always @(posedge s01_axis_aclk) begin
-    tmp <= s01_axis_tdata;
-    flag3 <= 1;
+    if(~flag3)begin
+      tmp <= s01_axis_tdata;
+      flag3 <= 1;
+    end
 end
 
  // Slave interface
@@ -54,9 +56,7 @@ end
         end
         CACHE: begin
           s01_axis_tready <= 0;
-          if(flag3)begin
           flag1 <= 1;
-          end
           slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
