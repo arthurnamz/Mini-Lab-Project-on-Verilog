@@ -25,7 +25,7 @@ module memory_controller #(
   reg [DATA_WIDTH-1:0] tmp;
   reg flag1 = 0;
   reg flag2 = 0;
-  reg flag3 = 0;
+  // reg flag3 = 0;
 
   // State machine states
   typedef enum {IDLE_SLAVE,CACHE,WAIT_FOR_MASTER } slave_states;
@@ -33,12 +33,12 @@ module memory_controller #(
   slave_states slave_state;
   master_states master_state;
 
-  always @(posedge s01_axis_aclk) begin
-    if(s01_axis_tlast)begin
-      tmp <= s01_axis_tdata;
-      flag3 <= 1;
-    end
-end
+//   always @(posedge s01_axis_aclk) begin
+//     if(s01_axis_tlast)begin
+//       tmp <= s01_axis_tdata;
+//       flag3 <= 1;
+//     end
+// end
 
  // Slave interface
   always @(posedge s01_axis_aclk) begin
@@ -55,6 +55,7 @@ end
             end
         end
         CACHE: begin
+          tmp <= s01_axis_tdata;
           s01_axis_tready <= 0;
           flag1 <= 1;
           slave_state <= WAIT_FOR_MASTER;
@@ -97,14 +98,10 @@ end
             end
         end
         WRITE_TO_MEMORY: begin
-          
             m01_axis_tvalid <= 1;            
             m01_axis_tstrb <= 'b1;
             m01_axis_tlast <= 1; 
-            if(flag3)begin
             m01_axis_tdata <= tmp;
-            flag3 <= 0;
-            end
             master_state <= NOTIFY_SLAVE_PORT;                       
         end
         NOTIFY_SLAVE_PORT: begin
