@@ -23,6 +23,7 @@ module memory_controller #(
 
   // Internal registers 
   reg [DATA_WIDTH-1:0] tmp;
+  reg [DATA_WIDTH-1:0] buffer;
   reg flag1 = 0;
   reg flag2 = 0;
 
@@ -47,10 +48,17 @@ module memory_controller #(
             end
         end
         CACHE: begin
-           tmp <= s01_axis_tdata;
-           s01_axis_tready <= 0;
-           flag1 <= 1;
-           slave_state <= WAIT_FOR_MASTER;
+          buffer <= s01_axis_tdata;
+          if (flag1 == 1'b0 || buffer > tmp) begin
+            tmp <= buffer;
+          end
+          s01_axis_tready <= 0;
+          flag1 <= 1;
+          slave_state <= WAIT_FOR_MASTER;
+          //  tmp <= hip_tmp;
+          //  s01_axis_tready <= 0;
+          //  flag1 <= 1;
+          //  slave_state <= WAIT_FOR_MASTER;
         end
         WAIT_FOR_MASTER: begin
           flag1 <= 0;

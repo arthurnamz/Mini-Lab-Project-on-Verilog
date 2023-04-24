@@ -57,7 +57,7 @@ module main_wrapper_tb;
     initial begin
         #120;
         s03_axis_enable = 1;
-        #20;
+        #40;
         m03_axis_tready = 1;
         #400;
 

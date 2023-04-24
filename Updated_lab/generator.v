@@ -23,9 +23,9 @@ always @(posedge m00_axis_aclk) begin
     if (~m00_axis_aresetn) begin
         // reset output to 1
         m00_axis_tdata <= 'b1;
-        m00_axis_tvalid <= 'b0;
+        m00_axis_tvalid <= 1'b0;
         m00_axis_tstrb <= 'b1;
-        m00_axis_tlast <= 'b1;
+        m00_axis_tlast <= 1'b1;
     end else if (m00_axis_enable && m00_axis_tready) begin
         m00_axis_tdata <= m00_axis_tdata * 3;
         m00_axis_tvalid <= 'b1;
