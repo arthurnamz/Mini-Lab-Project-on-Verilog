@@ -30,7 +30,7 @@ wire connect_m00_axis_tready;
 
 // Instantiate the DUT
     generator_fifo_wrapper #(
-        .ADDR_WIDTH(ADDR_WIDTH), .DATA_SIZE(DATA_WIDTH)
+        .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)
     ) gen_fifo_wrapper (
         .m00_axis_aclk(s03_axis_aclk),
         .m00_axis_aresetn(s03_axis_aresetn),

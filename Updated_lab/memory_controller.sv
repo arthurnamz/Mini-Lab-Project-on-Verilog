@@ -105,10 +105,7 @@ module memory_controller #(
             master_state <= IDLE_MASTER; 
             flag2 <= 1;                      
         end
-        // NOTIFY_SLAVE_PORT: begin
-        //   master_state <= IDLE_MASTER;
-        //   flag2 <= 1;
-        // end
+        
       endcase
     end
   end

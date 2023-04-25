@@ -10,7 +10,7 @@ parameter DATA_WIDTH = 32
     // slave input ports
     input s02_axis_aclk,
     input s02_axis_aresetn,
-    input [DATA_WIDTH-1:0] s02_axis_wr_tdata,
+    input [DATA_WIDTH-1:0] s02_axis_tdata,
     input [(DATA_WIDTH/8)-1 : 0] s02_axis_tstrb,
     input s02_axis_tvalid,
     input s02_axis_tlast,
@@ -20,7 +20,7 @@ parameter DATA_WIDTH = 32
     input m02_axis_aclk,
     input m02_axis_aresetn,
     input m02_axis_tready,
-    output reg [DATA_WIDTH-1:0] m02_axis_rd_tdata,
+    output reg [DATA_WIDTH-1:0] m02_axis_tdata,
     output reg [(DATA_WIDTH/8)-1 : 0] m02_axis_tstrb,
     output reg m02_axis_tvalid,
     output reg m02_axis_tlast
@@ -39,7 +39,7 @@ always @(posedge s02_axis_aclk) begin
         wr_addr_counter <= 0;
         s02_axis_tready <= 0;
     end else if (s02_axis_tvalid && s02_axis_tlast && s02_axis_tstrb == 'b1) begin
-		mem[wr_addr_counter] <= s02_axis_wr_tdata;
+		mem[wr_addr_counter] <= s02_axis_tdata;
         wr_addr_counter <= wr_addr_counter + 1;
         s02_axis_tready <= 1;
     end else begin
@@ -51,15 +51,15 @@ end
 always @(posedge m02_axis_aclk) begin
         if(~m02_axis_aresetn) begin
             rd_addr_counter <= 0;
-            m02_axis_rd_tdata <= 'bz;
+            m02_axis_tdata <= 'bz;
         end else if ( m02_axis_tready ) begin
-            m02_axis_rd_tdata <= mem[rd_addr_counter];
+            m02_axis_tdata <= mem[rd_addr_counter];
             rd_addr_counter <= rd_addr_counter + 1;
             m02_axis_tvalid <= 1;
             m02_axis_tstrb <= 'b1; 
             m02_axis_tlast <= 1;
         end else begin
-            m02_axis_rd_tdata <= 'bz;
+            m02_axis_tdata <= 'bz;
         end
 end
 

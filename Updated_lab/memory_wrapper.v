@@ -50,7 +50,7 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
     memory #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) mem(
         .s02_axis_aclk(s01_axis_aclk),
         .s02_axis_aresetn(s01_axis_aresetn),
-        .s02_axis_wr_tdata(connect_s02_axis_tdata),
+        .s02_axis_tdata(connect_s02_axis_tdata),
         .s02_axis_tstrb(connect_s02_axis_tstrb),
         .s02_axis_tvalid(connect_s02_axis_tvalid),
         .s02_axis_tlast(connect_s02_axis_tlast),
@@ -59,7 +59,7 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
         .m02_axis_aclk(m01_axis_aclk),
         .m02_axis_aresetn(m01_axis_aresetn),
         .m02_axis_tready(m01_axis_tready),
-        .m02_axis_rd_tdata(m01_axis_tdata),
+        .m02_axis_tdata(m01_axis_tdata),
         .m02_axis_tstrb(m01_axis_tstrb),
         .m02_axis_tvalid(m01_axis_tvalid),
         .m02_axis_tlast(m01_axis_tlast)        
