@@ -1,7 +1,7 @@
 module generator
 #
 (
-    parameter DATA_SIZE = 32
+    parameter DATA_WIDTH = 32
 )
 (
     // Input ports
@@ -11,12 +11,12 @@ module generator
     input m00_axis_tready,
 
     // Output ports
-    output reg [DATA_SIZE-1:0]  m00_axis_tdata,
-    output reg [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb,
+    output reg [DATA_WIDTH-1:0]  m00_axis_tdata,
+    output reg [(DATA_WIDTH/8)-1 : 0] m00_axis_tstrb,
     output reg m00_axis_tvalid,
     output reg m00_axis_tlast
 );
-reg [DATA_SIZE-1:0] counter;
+reg [DATA_WIDTH-1:0] counter;
 
 
 // generate power-of-3 sequence on positive edge of clock
