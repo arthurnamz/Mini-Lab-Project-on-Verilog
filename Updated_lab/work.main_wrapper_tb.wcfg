@@ -11,18 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="760.001 ns"></ZoomEndTime>
-      <Cursor1Time time="225.000 ns"></Cursor1Time>
+      <ZoomEndTime time="1,000.000 ns"></ZoomEndTime>
+      <Cursor1Time time="770.808 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="92"></ValueColumnWidth>
+      <NameColumnWidth column_width="270"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="41" />
-   <wvobject fp_name="divider11" type="divider">
-      <obj_property name="label">Inputs</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
+   <WVObjectSize size="6" />
    <wvobject type="logic" fp_name="/main_wrapper_tb/s03_axis_aclk">
       <obj_property name="ElementShortName">s03_axis_aclk</obj_property>
       <obj_property name="ObjectShortName">s03_axis_aclk</obj_property>
@@ -31,161 +27,176 @@
       <obj_property name="ElementShortName">s03_axis_aresetn</obj_property>
       <obj_property name="ObjectShortName">s03_axis_aresetn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/s03_axis_enable">
-      <obj_property name="ElementShortName">s03_axis_enable</obj_property>
-      <obj_property name="ObjectShortName">s03_axis_enable</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider21" type="divider">
-      <obj_property name="label">generator_fifo</obj_property>
+   <wvobject type="group" fp_name="group52">
+      <obj_property name="label">GENERATOR</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_enable">
+         <obj_property name="ElementShortName">m00_axis_enable</obj_property>
+         <obj_property name="ObjectShortName">m00_axis_enable</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_tready">
+         <obj_property name="ElementShortName">m00_axis_tready</obj_property>
+         <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_tdata">
+         <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m00_axis_tdata[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_tvalid">
+         <obj_property name="ElementShortName">m00_axis_tvalid</obj_property>
+         <obj_property name="ObjectShortName">m00_axis_tvalid</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_aclk">
-      <obj_property name="ElementShortName">m00_axis_aclk</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_aclk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_aresetn">
-      <obj_property name="ElementShortName">m00_axis_aresetn</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_aresetn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_enable">
-      <obj_property name="ElementShortName">m00_axis_enable</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_enable</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tready">
-      <obj_property name="ElementShortName">m00_axis_tready</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tdata">
-      <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tdata[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tstrb">
-      <obj_property name="ElementShortName">m00_axis_tstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tvalid">
-      <obj_property name="ElementShortName">m00_axis_tvalid</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/m00_axis_tlast">
-      <obj_property name="ElementShortName">m00_axis_tlast</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tlast</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider12" type="divider">
-      <obj_property name="label">output</obj_property>
+   <wvobject type="group" fp_name="group57">
+      <obj_property name="label">FIFO</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="group" fp_name="group58">
+         <obj_property name="label">SLAVE</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/s00_axis_tdata">
+            <obj_property name="ElementShortName">s00_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">s00_axis_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/s00_axis_tvalid">
+            <obj_property name="ElementShortName">s00_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">s00_axis_tvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/s00_axis_tready">
+            <obj_property name="ElementShortName">s00_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">s00_axis_tready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group62">
+         <obj_property name="label">MASTER</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/m00_axis_tdata">
+            <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">m00_axis_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/m00_axis_tvalid">
+            <obj_property name="ElementShortName">m00_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">m00_axis_tvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/fifo/m00_axis_tready">
+            <obj_property name="ElementShortName">m00_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
+         </wvobject>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_aclk">
-      <obj_property name="ElementShortName">m03_axis_aclk</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_aclk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_aresetn">
-      <obj_property name="ElementShortName">m03_axis_aresetn</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_aresetn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tready">
-      <obj_property name="ElementShortName">m03_axis_tready</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_tready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/m03_axis_tdata">
-      <obj_property name="ElementShortName">m03_axis_tdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_tdata[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/m03_axis_tstrb">
-      <obj_property name="ElementShortName">m03_axis_tstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_tstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tvalid">
-      <obj_property name="ElementShortName">m03_axis_tvalid</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_tvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/m03_axis_tlast">
-      <obj_property name="ElementShortName">m03_axis_tlast</obj_property>
-      <obj_property name="ObjectShortName">m03_axis_tlast</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider58" type="divider">
-      <obj_property name="label">memo wrapper</obj_property>
+   <wvobject type="group" fp_name="group67">
+      <obj_property name="label">MEM_CTRL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="group" fp_name="group68">
+         <obj_property name="label">SLAVE</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tdata">
+            <obj_property name="ElementShortName">s01_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">s01_axis_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tvalid">
+            <obj_property name="ElementShortName">s01_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">s01_axis_tvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tready">
+            <obj_property name="ElementShortName">s01_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">s01_axis_tready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group69">
+         <obj_property name="label">MASTER</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tdata">
+            <obj_property name="ElementShortName">m01_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">m01_axis_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tvalid">
+            <obj_property name="ElementShortName">m01_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">m01_axis_tvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tready">
+            <obj_property name="ElementShortName">m01_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">m01_axis_tready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag1">
+         <obj_property name="ElementShortName">flag1</obj_property>
+         <obj_property name="ObjectShortName">flag1</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/slave_state">
+         <obj_property name="ElementShortName">slave_state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">slave_state[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/tmp">
+         <obj_property name="ElementShortName">tmp[31:0]</obj_property>
+         <obj_property name="ObjectShortName">tmp[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag2">
+         <obj_property name="ElementShortName">flag2</obj_property>
+         <obj_property name="ObjectShortName">flag2</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/master_state">
+         <obj_property name="ElementShortName">master_state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">master_state[31:0]</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_aclk">
-      <obj_property name="ElementShortName">s01_axis_aclk</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_aclk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_aresetn">
-      <obj_property name="ElementShortName">s01_axis_aresetn</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_aresetn</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tdata">
-      <obj_property name="ElementShortName">s01_axis_tdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_tdata[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tstrb">
-      <obj_property name="ElementShortName">s01_axis_tstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_tstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tvalid">
-      <obj_property name="ElementShortName">s01_axis_tvalid</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_tvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tlast">
-      <obj_property name="ElementShortName">s01_axis_tlast</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_tlast</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/s01_axis_tready">
-      <obj_property name="ElementShortName">s01_axis_tready</obj_property>
-      <obj_property name="ObjectShortName">s01_axis_tready</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_aclk">
-      <obj_property name="ElementShortName">m01_axis_aclk</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_aclk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_aresetn">
-      <obj_property name="ElementShortName">m01_axis_aresetn</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_aresetn</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tready">
-      <obj_property name="ElementShortName">m01_axis_tready</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_tready</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tdata">
-      <obj_property name="ElementShortName">m01_axis_tdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_tdata[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tstrb">
-      <obj_property name="ElementShortName">m01_axis_tstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_tstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tvalid">
-      <obj_property name="ElementShortName">m01_axis_tvalid</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_tvalid</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/m01_axis_tlast">
-      <obj_property name="ElementShortName">m01_axis_tlast</obj_property>
-      <obj_property name="ObjectShortName">m01_axis_tlast</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/tmp">
-      <obj_property name="ElementShortName">tmp[31:0]</obj_property>
-      <obj_property name="ObjectShortName">tmp[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag1">
-      <obj_property name="ElementShortName">flag1</obj_property>
-      <obj_property name="ObjectShortName">flag1</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/flag2">
-      <obj_property name="ElementShortName">flag2</obj_property>
-      <obj_property name="ObjectShortName">flag2</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/slave_state">
-      <obj_property name="ElementShortName">slave_state[31:0]</obj_property>
-      <obj_property name="ObjectShortName">slave_state[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem_controller/master_state">
-      <obj_property name="ElementShortName">master_state[31:0]</obj_property>
-      <obj_property name="ObjectShortName">master_state[31:0]</obj_property>
+   <wvobject type="group" fp_name="group76">
+      <obj_property name="label">MEMORY</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/mem">
+         <obj_property name="ElementShortName">mem[0:63][31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem[0:63][31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/rd_addr_counter">
+         <obj_property name="ElementShortName">rd_addr_counter[11:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_addr_counter[11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="group77">
+         <obj_property name="label">SLAVE</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_wr_tdata">
+            <obj_property name="ElementShortName">s02_axis_wr_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">s02_axis_wr_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_tvalid">
+            <obj_property name="ElementShortName">s02_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">s02_axis_tvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_tready">
+            <obj_property name="ElementShortName">s02_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">s02_axis_tready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group78">
+         <obj_property name="label">MASTER</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_rd_tdata">
+            <obj_property name="ElementShortName">m02_axis_rd_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">m02_axis_rd_tdata[31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_tready">
+            <obj_property name="ElementShortName">m02_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">m02_axis_tready</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_tvalid">
+            <obj_property name="ElementShortName">m02_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">m02_axis_tvalid</obj_property>
+         </wvobject>
+      </wvobject>
    </wvobject>
 </wave_config>

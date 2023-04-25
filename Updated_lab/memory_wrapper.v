@@ -40,7 +40,7 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
 
         .m01_axis_aclk(m01_axis_aclk),
         .m01_axis_aresetn(m01_axis_aresetn),
-        .m01_axis_tready(m01_axis_tready),
+        .m01_axis_tready(connect_m01_axis_tready),
         .m01_axis_tdata(connect_s02_axis_tdata),
         .m01_axis_tstrb(connect_s02_axis_tstrb),
         .m01_axis_tvalid(connect_s02_axis_tvalid),
@@ -54,7 +54,7 @@ memory_controller #(.DATA_WIDTH(DATA_WIDTH)) mem_controller(
         .s02_axis_tstrb(connect_s02_axis_tstrb),
         .s02_axis_tvalid(connect_s02_axis_tvalid),
         .s02_axis_tlast(connect_s02_axis_tlast),
-        .s02_axis_tready(s02_axis_tready),
+        .s02_axis_tready(connect_m01_axis_tready),
 
         .m02_axis_aclk(m01_axis_aclk),
         .m02_axis_aresetn(m01_axis_aresetn),

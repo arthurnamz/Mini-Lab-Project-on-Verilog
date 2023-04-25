@@ -41,7 +41,7 @@ module memory_controller #(
 // end
 
  // Slave interface
-  always @(posedge s01_axis_aclk) begin
+  always @(posedge s01_axis_aclk ,s01_axis_tvalid) begin
     if (~s01_axis_aresetn) begin
       s01_axis_tready <= 0;
       slave_state <= IDLE_SLAVE;
@@ -49,14 +49,14 @@ module memory_controller #(
       case (slave_state)
         IDLE_SLAVE: begin
           flag1 <= 0;
+          s01_axis_tready <= 1;
             if(s01_axis_tvalid && s01_axis_tstrb && s01_axis_tlast) begin
                 slave_state <= CACHE;
-                s01_axis_tready <= 1;
+                s01_axis_tready <= 0;
             end
         end
         CACHE: begin
           tmp <= s01_axis_tdata;
-          s01_axis_tready <= 0;
           flag1 <= 1;
           slave_state <= WAIT_FOR_MASTER;
         end
@@ -91,23 +91,24 @@ module memory_controller #(
         WAIT_FOR_MEMORY: begin
             if(m01_axis_tready) begin
                 master_state <= WRITE_TO_MEMORY;
-                m01_axis_tvalid <= 0;
-                m01_axis_tdata <= 'bz;
-                m01_axis_tstrb <= 0;
-                m01_axis_tlast <= 0;
+                m01_axis_tvalid <= 1;
+                m01_axis_tdata <= tmp;
+                m01_axis_tstrb <= 'b1;
+                m01_axis_tlast <= 1;
             end
         end
         WRITE_TO_MEMORY: begin
-            m01_axis_tvalid <= 1;            
-            m01_axis_tstrb <= 'b1;
-            m01_axis_tlast <= 1; 
-            m01_axis_tdata <= tmp;
-            master_state <= NOTIFY_SLAVE_PORT;                       
+            m01_axis_tvalid <= 0;            
+            m01_axis_tstrb <= 'b0;
+            m01_axis_tlast <= 0; 
+            m01_axis_tdata <= 'bz;
+            master_state <= IDLE_MASTER; 
+            flag2 <= 1;                      
         end
-        NOTIFY_SLAVE_PORT: begin
-          master_state <= IDLE_MASTER;
-          flag2 <= 1;
-        end
+        // NOTIFY_SLAVE_PORT: begin
+        //   master_state <= IDLE_MASTER;
+        //   flag2 <= 1;
+        // end
       endcase
     end
   end

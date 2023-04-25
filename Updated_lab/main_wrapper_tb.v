@@ -3,7 +3,7 @@
 module main_wrapper_tb;
 
     // Parameters
-    parameter MEM_SIZE = 4096;
+    parameter MEM_SIZE = 64;
     parameter ADDR_WIDTH = 12;
     parameter DATA_WIDTH = 32;
 
@@ -55,11 +55,12 @@ module main_wrapper_tb;
 
     // Test stimulus
     initial begin
-        #120;
+        #200;
         s03_axis_enable = 1;
-        #40;
-        m03_axis_tready = 1;
+        #200;
+        m03_axis_tready = 0;
         #400;
+        m03_axis_tready = 1;
 
         #200;
         $finish;

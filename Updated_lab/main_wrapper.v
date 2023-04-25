@@ -1,6 +1,6 @@
 module main_wrapper #(
   // Parameter declarations
-  parameter MEM_SIZE = 4096,
+  parameter MEM_SIZE = 64,
   parameter ADDR_WIDTH = 12,
   parameter DATA_WIDTH = 32
 ) (
@@ -39,7 +39,7 @@ wire connect_m00_axis_tready;
         .m00_axis_tstrb(connect_s03_axis_tstrb),
         .m00_axis_tvalid(connect_s03_axis_tvalid),
         .m00_axis_tlast(connect_s03_axis_tlast),
-        .m00_axis_tready(m03_axis_tready)
+        .m00_axis_tready(connect_m00_axis_tready)
     );
 
     memory_wrapper #(.MEM_SIZE(MEM_SIZE), .ADDR_WIDTH(ADDR_WIDTH), .DATA_WIDTH(DATA_WIDTH)) mem_wrapper(
@@ -49,7 +49,7 @@ wire connect_m00_axis_tready;
         .s01_axis_tstrb(connect_s03_axis_tstrb),
         .s01_axis_tvalid(connect_s03_axis_tvalid),
         .s01_axis_tlast(connect_s03_axis_tlast),
-        .s01_axis_tready(s03_axis_tready),
+        .s01_axis_tready(connect_m00_axis_tready),
 
         .m01_axis_aclk(m03_axis_aclk),
         .m01_axis_aresetn(m03_axis_aresetn),
