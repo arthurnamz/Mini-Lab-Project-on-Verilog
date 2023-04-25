@@ -7,7 +7,7 @@ module generator_fifo_wrapper #
     // Input ports
     input wire m00_axis_aclk,
     input wire m00_axis_aresetn,
-    input wire m00_axis_enable,
+    input wire enable,
     input wire m00_axis_tready,
 
     // Output ports
@@ -29,7 +29,7 @@ generator #(
 ) gen (
     .m00_axis_aclk(m00_axis_aclk),
     .m00_axis_aresetn(m00_axis_aresetn),
-    .m00_axis_enable(m00_axis_enable),
+    .enable(enable),
     .m00_axis_tready(connect_m00_axis_tready),
     .m00_axis_tdata(connect_s00_axis_tdata),
     .m00_axis_tstrb(connect_s00_axis_tstrb),

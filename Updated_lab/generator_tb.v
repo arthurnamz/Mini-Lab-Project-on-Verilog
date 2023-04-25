@@ -2,7 +2,7 @@ module generator_tb;
     parameter DATA_SIZE = 32;
     reg m00_axis_aclk = 0;
     reg m00_axis_aresetn;
-    reg m00_axis_enable;
+    reg enable;
     wire  [DATA_SIZE-1:0]  m00_axis_tdata;
     wire  [(DATA_SIZE/8)-1 : 0] m00_axis_tstrb;
     wire   m00_axis_tvalid;
@@ -13,7 +13,7 @@ generator #(.DATA_SIZE(DATA_SIZE)) dut
     (
         .m00_axis_aclk(m00_axis_aclk), 
         .m00_axis_aresetn(m00_axis_aresetn), 
-        .m00_axis_enable(m00_axis_enable), 
+        .enable(enable), 
         .m00_axis_tdata(m00_axis_tdata),
         .m00_axis_tstrb(m00_axis_tstrb), 
         .m00_axis_tvalid(m00_axis_tvalid), 
@@ -28,7 +28,7 @@ always #5 m00_axis_aclk = ~m00_axis_aclk;
 initial begin
     // reset the dut
     m00_axis_aresetn = 0;
-    m00_axis_enable = 0;
+    enable = 0;
     m00_axis_tready = 0;
     #20 m00_axis_aresetn = 1;
 
@@ -36,42 +36,42 @@ initial begin
     #25;
 
     // start the generator
-    m00_axis_enable = 1;
+    enable = 1;
     m00_axis_tready = 1;
 
     // wait for 10 clock cycles to produce some output
     #50;
 
     // stop the generator
-    m00_axis_enable = 0;
+    enable = 0;
     m00_axis_tready = 0;
 
     // wait for 5 clock cycles
     #25;
 
     // start the generator again
-    m00_axis_enable = 1;
+    enable = 1;
     m00_axis_tready = 1;
 
     // wait for 10 clock cycles to produce some output
     #50;
 
     // stop the generator
-    m00_axis_enable = 0;
+    enable = 0;
     m00_axis_tready = 0;
 
     // wait for 5 clock cycles
     #25;
 
     // start the generator again
-    m00_axis_enable = 1;
+    enable = 1;
     m00_axis_tready = 1;
 
     // wait for 10 clock cycles to produce some output
     #50;
 
     // stop the generator
-    m00_axis_enable = 0;
+    enable = 0;
     m00_axis_tready = 0;
 
     // wait for 5 clock cycles
