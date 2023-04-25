@@ -10,12 +10,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,000.000 ns"></ZoomEndTime>
+      <ZoomStartTime time="655.108 ns"></ZoomStartTime>
+      <ZoomEndTime time="805.309 ns"></ZoomEndTime>
       <Cursor1Time time="770.808 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="270"></NameColumnWidth>
+      <NameColumnWidth column_width="266"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="6" />
@@ -31,10 +31,6 @@
       <obj_property name="label">GENERATOR</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_enable">
-         <obj_property name="ElementShortName">m00_axis_enable</obj_property>
-         <obj_property name="ObjectShortName">m00_axis_enable</obj_property>
-      </wvobject>
       <wvobject type="logic" fp_name="/main_wrapper_tb/dut/gen_fifo_wrapper/gen/m00_axis_tready">
          <obj_property name="ElementShortName">m00_axis_tready</obj_property>
          <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
@@ -166,9 +162,9 @@
          <obj_property name="label">SLAVE</obj_property>
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="isExpanded"></obj_property>
-         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_wr_tdata">
-            <obj_property name="ElementShortName">s02_axis_wr_tdata[31:0]</obj_property>
-            <obj_property name="ObjectShortName">s02_axis_wr_tdata[31:0]</obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_tdata">
+            <obj_property name="ElementShortName">s02_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">s02_axis_tdata[31:0]</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
          <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/s02_axis_tvalid">
@@ -184,9 +180,9 @@
          <obj_property name="label">MASTER</obj_property>
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="isExpanded"></obj_property>
-         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_rd_tdata">
-            <obj_property name="ElementShortName">m02_axis_rd_tdata[31:0]</obj_property>
-            <obj_property name="ObjectShortName">m02_axis_rd_tdata[31:0]</obj_property>
+         <wvobject type="array" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_tdata">
+            <obj_property name="ElementShortName">m02_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">m02_axis_tdata[31:0]</obj_property>
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
          <wvobject type="logic" fp_name="/main_wrapper_tb/dut/mem_wrapper/mem/m02_axis_tready">
