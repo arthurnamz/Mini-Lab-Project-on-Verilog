@@ -10,7 +10,7 @@ module main_wrapper_tb;
     // slave ports
     reg  s03_axis_aclk = 0;
     reg  s03_axis_aresetn;
-    reg  s03_axis_enable;
+    reg  enable;
     wire s03_axis_tready;
    
     // master ports
@@ -27,7 +27,7 @@ module main_wrapper_tb;
           // slave ports
             .s03_axis_aclk(s03_axis_aclk),
             .s03_axis_aresetn(s03_axis_aresetn),
-            .s03_axis_enable(s03_axis_enable),
+            .enable(enable),
             .s03_axis_tready(s03_axis_tready),
         
             // master ports
@@ -56,7 +56,7 @@ module main_wrapper_tb;
     // Test stimulus
     initial begin
         #200;
-        s03_axis_enable = 1;
+        enable = 1;
         #200;
         m03_axis_tready = 0;
         #400;

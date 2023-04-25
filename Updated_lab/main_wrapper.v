@@ -7,7 +7,7 @@ module main_wrapper #(
   // slave ports
     input  s03_axis_aclk,
     input  s03_axis_aresetn,
-    input  s03_axis_enable,
+    input  enable,
     output s03_axis_tready,
    
 
@@ -34,7 +34,7 @@ wire connect_m00_axis_tready;
     ) gen_fifo_wrapper (
         .m00_axis_aclk(s03_axis_aclk),
         .m00_axis_aresetn(s03_axis_aresetn),
-        .m00_axis_enable(s03_axis_enable),
+        .enable(enable),
         .m00_axis_tdata(connect_s03_axis_tdata),
         .m00_axis_tstrb(connect_s03_axis_tstrb),
         .m00_axis_tvalid(connect_s03_axis_tvalid),
